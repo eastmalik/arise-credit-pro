@@ -387,7 +387,7 @@ function About() {
           <div className="relative">
             <div className="relative rounded-2xl overflow-hidden shadow-2xl shadow-blue-900/20">
               <img
-                src="https://images.unsplash.com/photo-1560250097-0b93528c311a?w=600&q=80"
+                src="/manus-storage/malik_east_04805c46.webp"
                 alt="Malik East — Founder of Arise Credit Pro"
                 className="w-full h-[500px] object-cover object-top"
               />
