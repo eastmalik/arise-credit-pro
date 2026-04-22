@@ -44,8 +44,8 @@ function Navbar() {
 
   const navLinks = [
     { label: "Services", href: "#services" },
-    { label: "Results", href: "#results" },
-    { label: "FAQ", href: "#faq" },
+    { label: "How It Works", href: "#journey" },
+    { label: "Book a Call", href: "#booking" },
   ];
 
   return (
@@ -407,7 +407,7 @@ const journeySteps = [
 
 function TransformationJourney() {
   return (
-    <section className="py-24 bg-white">
+    <section id="journey" className="py-24 bg-white">
       <div className="container mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         {/* Header */}
         <div className="text-center mb-16">
@@ -588,13 +588,17 @@ function Footer() {
               Quick Links
             </h4>
             <ul className="space-y-2">
-              {["About", "Services", "Results", "FAQ"].map((l) => (
-                <li key={l}>
+              {[
+                { label: "Services", href: "#services" },
+                { label: "How It Works", href: "#journey" },
+                { label: "Book a Call", href: "#booking" },
+              ].map(({ label, href }) => (
+                <li key={label}>
                   <a
-                    href={`#${l.toLowerCase()}`}
+                    href={href}
                     className="text-blue-300 hover:text-white text-sm transition-colors"
                   >
-                    {l}
+                    {label}
                   </a>
                 </li>
               ))}
