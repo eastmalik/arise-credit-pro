@@ -564,39 +564,38 @@ function BookingCTA() {
         background: "linear-gradient(135deg, oklch(0.96 0.02 264), oklch(0.98 0.01 230))",
       }}
     >
-      <div className="container mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <div className="grid lg:grid-cols-2 gap-16 items-center">
-          {/* Left */}
-          <div>
-            <div className="section-label mb-4">Schedule a Call</div>
-            <h2
-              className="text-4xl lg:text-5xl font-black text-blue-950 mb-6 leading-tight"
-              style={{ fontFamily: "Montserrat, sans-serif" }}
-            >
-              Ready to Restore
-              <br />
-              <span className="text-blue-600">Your Credit?</span>
-            </h2>
-            <p className="text-slate-600 text-lg leading-relaxed mb-8">
-              Book your free 30-minute credit consultation. We'll review your credit
-              situation, identify what's hurting your score, and map out a clear path
-              to financial recovery — at no cost and no obligation.
-            </p>
+      <div className="container mx-auto max-w-3xl px-4 sm:px-6 lg:px-8 text-center">
+        <div>
+          <div className="section-label justify-center mb-4">Schedule a Call</div>
+          <h2
+            className="text-4xl lg:text-5xl font-black text-blue-950 mb-6 leading-tight"
+            style={{ fontFamily: "Montserrat, sans-serif" }}
+          >
+            Ready to Restore
+            <br />
+            <span className="text-blue-600">Your Credit?</span>
+          </h2>
+          <p className="text-slate-600 text-lg leading-relaxed mb-8">
+            Book your free 30-minute credit consultation. We'll review your credit
+            situation, identify what's hurting your score, and map out a clear path
+            to financial recovery — at no cost and no obligation.
+          </p>
 
-            <ul className="space-y-3 mb-10">
-              {[
-                "Free 30-minute credit review & action plan",
-                "No obligation, no pressure — just honest guidance",
-                "Identify every negative item hurting your score",
-                "Walk away knowing exactly what to do next",
-              ].map((item) => (
-                <li key={item} className="flex items-start gap-3">
-                  <CheckCircle2 size={18} className="text-blue-600 flex-shrink-0 mt-0.5" />
-                  <span className="text-slate-600">{item}</span>
-                </li>
-              ))}
-            </ul>
+          <ul className="space-y-3 mb-10 inline-block text-left">
+            {[
+              "Free 30-minute credit review & action plan",
+              "No obligation, no pressure — just honest guidance",
+              "Identify every negative item hurting your score",
+              "Walk away knowing exactly what to do next",
+            ].map((item) => (
+              <li key={item} className="flex items-start gap-3">
+                <CheckCircle2 size={18} className="text-blue-600 flex-shrink-0 mt-0.5" />
+                <span className="text-slate-600">{item}</span>
+              </li>
+            ))}
+          </ul>
 
+          <div className="flex flex-col items-center gap-2">
             <a
               href={TYPEFORM_URL}
               target="_blank"
@@ -605,13 +604,12 @@ function BookingCTA() {
             >
               Book Your Free Consultation <ArrowRight size={18} />
             </a>
-            <p className="text-slate-400 text-xs mt-3">
+            <p className="text-slate-400 text-xs">
               No credit card required · 100% free · No obligation
             </p>
           </div>
-
-
         </div>
+
       </div>
     </section>
   );
