@@ -209,30 +209,7 @@ function Hero() {
             </a>
           </div>
 
-          {/* Social proof */}
-          <div className="flex items-center gap-4 mt-10 animate-fade-up delay-500">
-            <div className="flex -space-x-2">
-              {["A", "B", "C", "D"].map((l) => (
-                <div
-                  key={l}
-                  className="w-9 h-9 rounded-full bg-gradient-to-br from-blue-400 to-blue-600 border-2 border-blue-900 flex items-center justify-center text-white text-xs font-bold"
-                  style={{ fontFamily: "Montserrat, sans-serif" }}
-                >
-                  {l}
-                </div>
-              ))}
-            </div>
-            <div>
-              <div className="flex gap-0.5">
-                {[...Array(5)].map((_, i) => (
-                  <Star key={i} size={14} className="text-yellow-400 fill-yellow-400" />
-                ))}
-              </div>
-              <p className="text-blue-200 text-xs mt-0.5">
-                <span className="font-bold text-white">100+</span> credit scores transformed
-              </p>
-            </div>
-          </div>
+
         </div>
       </div>
 
@@ -302,10 +279,8 @@ function StatsBar() {
   }, []);
 
   const stats = [
-    { value: 100, suffix: "+", label: "Clients Helped" },
     { value: 120, suffix: "pts", label: "Avg Score Increase" },
     { value: 98, suffix: "%", label: "Client Satisfaction" },
-    { value: 90, suffix: " Days", label: "To Real Results" },
   ];
 
   return (
@@ -317,7 +292,7 @@ function StatsBar() {
       }}
     >
       <div className="container mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-2 lg:grid-cols-4 divide-x divide-blue-700/40 divide-y lg:divide-y-0">
+        <div className="grid grid-cols-2 divide-x divide-blue-700/40">
           {stats.map((s) => (
             <StatCard key={s.label} {...s} started={started} />
           ))}
