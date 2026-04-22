@@ -458,15 +458,6 @@ function TransformationJourney() {
           </div>
         </div>
 
-        {/* CTA */}
-        <div className="text-center mt-14">
-          <a
-            href="#booking"
-            className="btn-primary"
-          >
-            Start Your Journey <ArrowRight size={18} />
-          </a>
-        </div>
       </div>
     </section>
   );
