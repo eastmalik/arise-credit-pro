@@ -304,32 +304,32 @@ function StatsBar() {
 // ─── Services ─────────────────────────────────────────────────────────────────
 const services = [
   {
-    icon: FileSearch,
+    emoji: "📊",
     title: "Credit Analysis",
     desc: "We pull and review all three bureaus — Equifax, Experian, and TransUnion — to identify every negative item, error, and opportunity for improvement.",
   },
   {
-    icon: AlertCircle,
+    emoji: "🔧",
     title: "Credit Repair",
     desc: "We dispute inaccurate collections, charge-offs, late payments, repossessions, and other derogatory marks directly with the credit bureaus and creditors.",
   },
   {
-    icon: TrendingUp,
+    emoji: "💰",
     title: "Funding Connection",
     desc: "Direct access to lenders and funding programs matched to your profile and goals.",
   },
   {
-    icon: Zap,
+    emoji: "📈",
     title: "Score Monitoring",
     desc: "For clients with urgent needs — home purchase, car loan, or job application — our expedited process prioritizes the fastest possible score improvements.",
   },
   {
-    icon: DollarSign,
+    emoji: "👥",
     title: "Personal Coaching",
     desc: "We help you negotiate with creditors to settle outstanding debts for less than you owe, reducing your financial burden and clearing the path to a healthier profile.",
   },
   {
-    icon: BookOpen,
+    emoji: "🎯",
     title: "Financial Literacy Coaching",
     desc: "Understanding money is the foundation of lasting financial health. We coach you on budgeting, credit utilization, saving strategies, and building wealth.",
   },
@@ -355,14 +355,14 @@ function Services() {
         </div>
 
         <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
-          {services.map(({ title, desc }) => (
+          {services.map(({ emoji, title, desc }) => (
             <div
               key={title}
               className="service-card bg-white p-7 shadow-sm border border-slate-100"
               style={{ borderRadius: '12px', height: '305px' }}
             >
               <div className="w-12 h-12 bg-blue-50 rounded-lg flex items-center justify-center mb-5">
-                <span style={{ fontSize: '22px' }}>📱</span>
+                <span style={{ fontSize: '24px' }}>{emoji}</span>
               </div>
               <h3
                 className="font-black text-blue-950 text-lg mb-3"
