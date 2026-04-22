@@ -305,39 +305,33 @@ function StatsBar() {
 const services = [
   {
     icon: FileSearch,
-    title: "Credit Report Analysis",
+    title: "Credit Analysis",
     desc: "We pull and review all three bureaus — Equifax, Experian, and TransUnion — to identify every negative item, error, and opportunity for improvement.",
-    tag: "Free initial review",
   },
   {
     icon: AlertCircle,
-    title: "Negative Item Disputes",
+    title: "Credit Repair",
     desc: "We dispute inaccurate collections, charge-offs, late payments, repossessions, and other derogatory marks directly with the credit bureaus and creditors.",
-    tag: "Results in 30–90 days",
   },
   {
     icon: TrendingUp,
-    title: "Score Building Strategy",
-    desc: "Beyond removal, we create a personalized roadmap to build positive credit history — including secured cards, credit-builder loans, and utilization strategies.",
-    tag: "Long-term growth plan",
+    title: "Funding Connection",
+    desc: "Direct access to lenders and funding programs matched to your profile and goals.",
   },
   {
     icon: Zap,
-    title: "Rapid Credit Restoration",
+    title: "Score Monitoring",
     desc: "For clients with urgent needs — home purchase, car loan, or job application — our expedited process prioritizes the fastest possible score improvements.",
-    tag: "Priority processing",
   },
   {
     icon: DollarSign,
-    title: "Debt Settlement Guidance",
+    title: "Personal Coaching",
     desc: "We help you negotiate with creditors to settle outstanding debts for less than you owe, reducing your financial burden and clearing the path to a healthier profile.",
-    tag: "Reduce what you owe",
   },
   {
     icon: BookOpen,
     title: "Financial Literacy Coaching",
     desc: "Understanding money is the foundation of lasting financial health. We coach you on budgeting, credit utilization, saving strategies, and building wealth.",
-    tag: "Lifetime knowledge",
   },
 ];
 
@@ -361,10 +355,11 @@ function Services() {
         </div>
 
         <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
-          {services.map(({ icon: Icon, title, desc, tag }) => (
+          {services.map(({ icon: Icon, title, desc }) => (
             <div
               key={title}
-              className="service-card bg-white rounded-xl p-7 shadow-sm border border-slate-100"
+              className="service-card bg-white p-7 shadow-sm border border-slate-100"
+              style={{ borderRadius: '12px', height: '305px' }}
             >
               <div className="w-12 h-12 bg-blue-50 rounded-lg flex items-center justify-center mb-5">
                 <Icon size={22} className="text-blue-600" />
@@ -375,39 +370,12 @@ function Services() {
               >
                 {title}
               </h3>
-              <p className="text-slate-500 text-sm leading-relaxed mb-5">{desc}</p>
-              <div className="flex items-center justify-between">
-                <span className="inline-flex items-center gap-1.5 bg-blue-50 text-blue-700 text-xs font-bold px-3 py-1.5 rounded-full">
-                  <CreditCard size={11} />
-                  {tag}
-                </span>
-                <a
-                  href={TYPEFORM_URL}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-blue-600 text-sm font-bold flex items-center gap-1 hover:gap-2 transition-all"
-                  style={{ fontFamily: "Montserrat, sans-serif" }}
-                >
-                  Get Started <ArrowRight size={14} />
-                </a>
-              </div>
+              <p className="text-slate-500 text-sm leading-relaxed">{desc}</p>
             </div>
           ))}
         </div>
 
-        <div className="text-center mt-12">
-          <p className="text-slate-500 mb-4">
-            Not sure where to start? Let us review your credit report for free.
-          </p>
-          <a
-            href={TYPEFORM_URL}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="btn-primary"
-          >
-            Book My Free Consultation <ArrowRight size={18} />
-          </a>
-        </div>
+
       </div>
     </section>
   );
