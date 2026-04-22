@@ -549,67 +549,54 @@ function Testimonials() {
 
 // ─── Booking CTA ──────────────────────────────────────────────────────────────
 function BookingCTA() {
-  const details = [
-    { label: "Duration", value: "30 minutes" },
-    { label: "Format", value: "Phone / Video" },
-    { label: "Availability", value: "Mon – Sat" },
-    { label: "Cost", value: "100% Free" },
-  ];
-
   return (
     <section
       id="booking"
-      className="py-24"
+      className="relative overflow-hidden py-20 px-6"
       style={{
-        background: "linear-gradient(135deg, oklch(0.96 0.02 264), oklch(0.98 0.01 230))",
+        background: "linear-gradient(135deg, oklch(0.42 0.20 264), oklch(0.52 0.22 264))",
       }}
     >
-      <div className="container mx-auto max-w-3xl px-4 sm:px-6 lg:px-8 text-center">
-        <div>
-          <div className="section-label justify-center mb-4">Schedule a Call</div>
-          <h2
-            className="text-4xl lg:text-5xl font-black text-blue-950 mb-6 leading-tight"
+      {/* Decorative circles */}
+      <div
+        className="absolute -left-16 -bottom-16 w-64 h-64 rounded-full opacity-20"
+        style={{ background: "oklch(0.65 0.18 264)" }}
+      />
+      <div
+        className="absolute -right-16 -top-16 w-64 h-64 rounded-full opacity-20"
+        style={{ background: "oklch(0.65 0.18 264)" }}
+      />
+
+      <div className="relative z-10 max-w-4xl mx-auto text-center">
+        <h2
+          className="text-4xl lg:text-6xl font-black text-white mb-5 leading-tight"
+          style={{ fontFamily: "Montserrat, sans-serif" }}
+        >
+          Ready to Restore Your Credit?
+        </h2>
+        <p className="text-blue-100 text-lg mb-10 max-w-2xl mx-auto leading-relaxed">
+          Book your free 30-minute credit consultation. We'll review your situation,
+          identify what's hurting your score, and map out a clear path to financial
+          freedom — at no cost and no obligation.
+        </p>
+        <div className="flex flex-wrap items-center justify-center gap-4">
+          <a
+            href={TYPEFORM_URL}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-2 bg-white text-blue-700 font-black px-8 py-4 rounded-full text-base hover:bg-blue-50 transition-colors shadow-lg"
             style={{ fontFamily: "Montserrat, sans-serif" }}
           >
-            Ready to Restore
-            <br />
-            <span className="text-blue-600">Your Credit?</span>
-          </h2>
-          <p className="text-slate-600 text-lg leading-relaxed mb-8">
-            Book your free 30-minute credit consultation. We'll review your credit
-            situation, identify what's hurting your score, and map out a clear path
-            to financial recovery — at no cost and no obligation.
-          </p>
-
-          <ul className="space-y-3 mb-10 inline-block text-left">
-            {[
-              "Free 30-minute credit review & action plan",
-              "No obligation, no pressure — just honest guidance",
-              "Identify every negative item hurting your score",
-              "Walk away knowing exactly what to do next",
-            ].map((item) => (
-              <li key={item} className="flex items-start gap-3">
-                <CheckCircle2 size={18} className="text-blue-600 flex-shrink-0 mt-0.5" />
-                <span className="text-slate-600">{item}</span>
-              </li>
-            ))}
-          </ul>
-
-          <div className="flex flex-col items-center gap-2">
-            <a
-              href={TYPEFORM_URL}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="btn-primary text-base"
-            >
-              Book Your Free Consultation <ArrowRight size={18} />
-            </a>
-            <p className="text-slate-400 text-xs">
-              No credit card required · 100% free · No obligation
-            </p>
-          </div>
+            Schedule Free Consultation
+          </a>
+          <a
+            href="#services"
+            className="inline-flex items-center gap-2 border-2 border-white text-white font-black px-8 py-4 rounded-full text-base hover:bg-white/10 transition-colors"
+            style={{ fontFamily: "Montserrat, sans-serif" }}
+          >
+            Learn More
+          </a>
         </div>
-
       </div>
     </section>
   );
