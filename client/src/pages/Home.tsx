@@ -43,7 +43,6 @@ function Navbar() {
   }, []);
 
   const navLinks = [
-    { label: "About", href: "#about" },
     { label: "Services", href: "#services" },
     { label: "Results", href: "#results" },
     { label: "FAQ", href: "#faq" },
@@ -296,158 +295,6 @@ function StatsBar() {
           {stats.map((s) => (
             <StatCard key={s.label} {...s} started={started} />
           ))}
-        </div>
-      </div>
-    </section>
-  );
-}
-
-// ─── About / Founder ──────────────────────────────────────────────────────────
-function About() {
-  const fixes = [
-    "Collections & Charge-offs",
-    "Late & Missed Payments",
-    "Medical Debt",
-    "Bankruptcies",
-    "Repossessions",
-    "Identity Theft Errors",
-    "Hard Inquiries",
-    "Student Loan Delinquencies",
-  ];
-
-  const credentials = [
-    "Certified Credit Restoration Specialist",
-    "Financial Literacy Coach & Educator",
-    "Personalized 1-on-1 Credit Strategy",
-    "Transparent, Results-Driven Approach",
-  ];
-
-  return (
-    <section id="about" className="py-24 bg-white">
-      <div className="container mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <div className="grid lg:grid-cols-2 gap-16 items-center">
-          {/* Left — visual */}
-          <div className="relative">
-            <div className="relative rounded-2xl overflow-hidden shadow-2xl shadow-blue-900/20">
-              <img
-                src="/manus-storage/malik_east_04805c46.webp"
-                alt="Malik East — Founder of Arise Credit Pro"
-                className="w-full h-[500px] object-cover object-top"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-blue-950/60 via-transparent to-transparent" />
-              <div className="absolute bottom-0 left-0 right-0 p-6">
-                <p
-                  className="text-white font-black text-xl"
-                  style={{ fontFamily: "Montserrat, sans-serif" }}
-                >
-                  Malik East
-                </p>
-                <p className="text-blue-200 text-sm font-medium">
-                  Founder & Lead Credit Consultant
-                </p>
-              </div>
-            </div>
-
-            {/* Floating stat card */}
-            <div className="absolute -right-6 top-10 bg-white rounded-xl shadow-xl p-4 border border-blue-100">
-              <div
-                className="text-3xl font-black text-blue-700"
-                style={{ fontFamily: "Montserrat, sans-serif" }}
-              >
-                800+
-              </div>
-              <div className="text-slate-500 text-xs font-medium">
-                Credit Score Achieved
-              </div>
-            </div>
-            <div className="absolute -left-6 bottom-20 bg-blue-700 rounded-xl shadow-xl p-4">
-              <div
-                className="text-3xl font-black text-white"
-                style={{ fontFamily: "Montserrat, sans-serif" }}
-              >
-                100+
-              </div>
-              <div className="text-blue-200 text-xs font-medium">
-                Clients Transformed
-              </div>
-            </div>
-          </div>
-
-          {/* Right — content */}
-          <div>
-            <div className="section-label mb-4">Meet the Founder</div>
-            <h2
-              className="text-4xl lg:text-5xl font-black text-blue-950 mb-2 leading-tight"
-              style={{ fontFamily: "Montserrat, sans-serif" }}
-            >
-              Malik East
-            </h2>
-            <p
-              className="text-blue-600 font-semibold text-lg mb-6"
-              style={{ fontFamily: "Montserrat, sans-serif" }}
-            >
-              Founder & Lead Credit Consultant, Arise Credit Pro
-            </p>
-            <p className="text-slate-600 leading-relaxed mb-4">
-              Malik East founded Arise Credit Pro on one powerful belief: everyone
-              deserves a clear, actionable path to financial freedom — regardless of
-              where they're starting from. Having personally navigated the credit
-              system and achieved an{" "}
-              <strong className="text-blue-700">800+ Excellent credit score</strong>,
-              Malik built a proven system that has helped over 100 clients remove
-              negative items, boost their scores, and unlock real financial
-              opportunities.
-            </p>
-            <p className="text-slate-600 leading-relaxed mb-8">
-              His approach is transparent, results-driven, and deeply personal. Every
-              client receives a customized strategy built around their unique
-              financial situation.
-            </p>
-
-            <div className="grid sm:grid-cols-2 gap-6 mb-8">
-              <div>
-                <h4
-                  className="font-black text-blue-950 mb-3 text-sm uppercase tracking-wider"
-                  style={{ fontFamily: "Montserrat, sans-serif" }}
-                >
-                  What We Help You Fix
-                </h4>
-                <ul className="space-y-2">
-                  {fixes.map((f) => (
-                    <li key={f} className="flex items-center gap-2 text-slate-600 text-sm">
-                      <CheckCircle2 size={14} className="text-blue-500 flex-shrink-0" />
-                      {f}
-                    </li>
-                  ))}
-                </ul>
-              </div>
-              <div>
-                <h4
-                  className="font-black text-blue-950 mb-3 text-sm uppercase tracking-wider"
-                  style={{ fontFamily: "Montserrat, sans-serif" }}
-                >
-                  Credentials
-                </h4>
-                <ul className="space-y-2">
-                  {credentials.map((c) => (
-                    <li key={c} className="flex items-start gap-2 text-slate-600 text-sm">
-                      <Shield size={14} className="text-blue-500 flex-shrink-0 mt-0.5" />
-                      {c}
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            </div>
-
-            <a
-              href={TYPEFORM_URL}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="btn-primary"
-            >
-              Book My Free Consultation <ArrowRight size={18} />
-            </a>
-          </div>
         </div>
       </div>
     </section>
@@ -1043,7 +890,6 @@ export default function Home() {
       <Navbar />
       <Hero />
       <StatsBar />
-      <About />
       <Services />
       <Testimonials />
       <BookingCTA />
