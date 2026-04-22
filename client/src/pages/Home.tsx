@@ -170,28 +170,9 @@ function Hero() {
       />
       {/* Deep navy/blue gradient overlay */}
       <div className="absolute inset-0 bg-gradient-to-br from-blue-950/95 via-blue-900/85 to-blue-800/75" />
-      {/* Subtle pattern overlay */}
-      <div
-        className="absolute inset-0 opacity-5"
-        style={{
-          backgroundImage:
-            "repeating-linear-gradient(45deg, white 0, white 1px, transparent 0, transparent 50%)",
-          backgroundSize: "20px 20px",
-        }}
-      />
 
       <div className="relative container mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-32 lg:py-40">
         <div className="max-w-3xl">
-          {/* Badge */}
-          <div className="inline-flex items-center gap-2 bg-blue-500/20 border border-blue-400/30 rounded-full px-4 py-2 mb-8 animate-fade-up">
-            <span className="w-2 h-2 bg-blue-400 rounded-full animate-pulse" />
-            <span
-              className="text-blue-200 text-xs font-bold tracking-widest uppercase"
-              style={{ fontFamily: "Montserrat, sans-serif" }}
-            >
-              Credit Building & Financial Empowerment
-            </span>
-          </div>
 
           {/* Headline */}
           <h1
@@ -212,19 +193,6 @@ function Hero() {
             deserve — starting today.
           </p>
 
-          {/* Trust bullets */}
-          <div className="flex flex-col sm:flex-row gap-4 mb-10 animate-fade-up delay-300">
-            {[
-              "Negative Items Removed Fast",
-              "Score Increases in 30–90 Days",
-              "Personalized Strategy",
-            ].map((item) => (
-              <div key={item} className="flex items-center gap-2">
-                <CheckCircle2 size={16} className="text-blue-300 flex-shrink-0" />
-                <span className="text-blue-100 text-sm font-medium">{item}</span>
-              </div>
-            ))}
-          </div>
 
           {/* CTAs */}
           <div className="flex flex-col sm:flex-row gap-4 animate-fade-up delay-400">
