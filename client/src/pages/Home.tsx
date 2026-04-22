@@ -552,29 +552,26 @@ function BookingCTA() {
   return (
     <section
       id="booking"
-      className="relative overflow-hidden py-20 px-6"
-      style={{
-        background: "linear-gradient(135deg, oklch(0.42 0.20 264), oklch(0.52 0.22 264))",
-      }}
+      className="relative overflow-hidden py-20 px-6 bg-white"
     >
       {/* Decorative circles */}
       <div
-        className="absolute -left-16 -bottom-16 w-64 h-64 rounded-full opacity-20"
-        style={{ background: "oklch(0.65 0.18 264)" }}
+        className="absolute -left-16 -bottom-16 w-64 h-64 rounded-full opacity-10"
+        style={{ background: "oklch(0.55 0.20 264)" }}
       />
       <div
-        className="absolute -right-16 -top-16 w-64 h-64 rounded-full opacity-20"
-        style={{ background: "oklch(0.65 0.18 264)" }}
+        className="absolute -right-16 -top-16 w-64 h-64 rounded-full opacity-10"
+        style={{ background: "oklch(0.55 0.20 264)" }}
       />
 
       <div className="relative z-10 max-w-4xl mx-auto text-center">
         <h2
-          className="text-4xl lg:text-6xl font-black text-white mb-5 leading-tight"
-          style={{ fontFamily: "Montserrat, sans-serif" }}
+          className="font-black text-blue-950 mb-5 leading-tight"
+          style={{ fontFamily: "Montserrat, sans-serif", fontSize: "52px" }}
         >
           Ready to Restore Your Credit?
         </h2>
-        <p className="text-blue-100 text-lg mb-10 max-w-2xl mx-auto leading-relaxed">
+        <p className="text-slate-700 mb-10 max-w-2xl mx-auto leading-relaxed" style={{ fontSize: "19px" }}>
           Book your free 30-minute credit consultation. We'll review your situation,
           identify what's hurting your score, and map out a clear path to financial
           freedom — at no cost and no obligation.
@@ -584,14 +581,14 @@ function BookingCTA() {
             href={TYPEFORM_URL}
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 bg-white text-blue-700 font-black px-8 py-4 rounded-full text-base hover:bg-blue-50 transition-colors shadow-lg"
+            className="inline-flex items-center gap-2 bg-blue-600 text-white font-black px-8 py-4 rounded-full text-base hover:bg-blue-700 transition-colors shadow-lg"
             style={{ fontFamily: "Montserrat, sans-serif" }}
           >
             Schedule Free Consultation
           </a>
           <a
             href="#services"
-            className="inline-flex items-center gap-2 border-2 border-white text-white font-black px-8 py-4 rounded-full text-base hover:bg-white/10 transition-colors"
+            className="inline-flex items-center gap-2 border-2 border-blue-600 text-blue-700 font-black px-8 py-4 rounded-full text-base hover:bg-blue-50 transition-colors"
             style={{ fontFamily: "Montserrat, sans-serif" }}
           >
             Learn More
