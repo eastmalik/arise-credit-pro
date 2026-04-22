@@ -516,66 +516,15 @@ function Testimonials() {
   return (
     <section id="results" className="py-24 bg-white">
       <div className="container mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-16">
-          <div className="section-label justify-center mb-4">Real Client Results</div>
-          <h2
-            className="text-4xl lg:text-5xl font-black text-blue-950 mb-4"
-            style={{ fontFamily: "Montserrat, sans-serif" }}
-          >
-            Real People.{" "}
-            <span className="text-blue-600">Real Results.</span>
-          </h2>
-          <p className="text-slate-500 text-lg max-w-xl mx-auto">
-            These are real outcomes from real clients. We let the numbers speak for
-            themselves.
-          </p>
-        </div>
-
-        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
-          {testimonials.map(({ score, label, points, quote, name, detail }) => (
-            <div
-              key={score + label}
-              className="bg-gradient-to-br from-blue-950 to-blue-800 rounded-2xl p-6 flex flex-col gap-4 hover:-translate-y-1 transition-transform duration-300 shadow-xl shadow-blue-900/20"
-            >
-              <div className="flex items-start justify-between">
-                <div>
-                  <div
-                    className="text-4xl font-black text-white"
-                    style={{ fontFamily: "Montserrat, sans-serif" }}
-                  >
-                    {score}
-                  </div>
-                  <div className="text-blue-300 text-xs font-semibold">{label}</div>
-                </div>
-                <span className="bg-blue-500/30 text-blue-200 text-xs font-bold px-2 py-1 rounded-full border border-blue-400/30">
-                  {points}
-                </span>
-              </div>
-              <p className="text-blue-100/90 text-sm leading-relaxed flex-1 italic">
-                "{quote}"
-              </p>
-              <div className="border-t border-blue-700/50 pt-3">
-                <div className="flex gap-0.5 mb-1">
-                  {[...Array(5)].map((_, i) => (
-                    <Star key={i} size={11} className="text-yellow-400 fill-yellow-400" />
-                  ))}
-                </div>
-                <p className="text-blue-200 text-xs font-semibold">{name}</p>
-                <p className="text-blue-400 text-xs">{detail}</p>
-              </div>
-            </div>
-          ))}
-        </div>
-
         {/* CTA Banner */}
         <div
-          className="mt-16 rounded-2xl p-10 text-center"
+          className="rounded-2xl p-12 text-center"
           style={{
             background: "linear-gradient(135deg, oklch(0.18 0.08 264), oklch(0.35 0.18 264))",
           }}
         >
           <h3
-            className="text-3xl font-black text-white mb-3"
+            className="text-3xl lg:text-4xl font-black text-white mb-3"
             style={{ fontFamily: "Montserrat, sans-serif" }}
           >
             Ready to write your own success story?
