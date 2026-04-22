@@ -617,97 +617,6 @@ function BookingCTA() {
   );
 }
 
-// ─── FAQ ──────────────────────────────────────────────────────────────────────
-const faqs = [
-  {
-    q: "How long does Credit Restoration take?",
-    a: "Most clients begin seeing results within 30–90 days. The timeline depends on the complexity of your credit profile and the types of negative items being disputed. We provide regular updates throughout the process.",
-  },
-  {
-    q: "Can you really remove negative items from my credit report?",
-    a: "Yes. We dispute inaccurate, unverifiable, or outdated negative items directly with the three major credit bureaus. While we cannot guarantee removal of every item, our proven process has helped hundreds of clients achieve significant improvements.",
-  },
-  {
-    q: "What does the free consultation include?",
-    a: "Your free 30-minute consultation includes a review of your current credit situation, identification of the key items hurting your score, and a personalized action plan — all at no cost and no obligation.",
-  },
-  {
-    q: "How much can my credit score increase?",
-    a: "Results vary by individual, but our clients have seen average score increases of 120+ points. Some clients have seen jumps of 144 points or more within a few months.",
-  },
-  {
-    q: "Is Credit Restoration legal?",
-    a: "Absolutely. Credit restoration is a fully legal process protected under the Fair Credit Reporting Act (FCRA) and the Credit Repair Organizations Act (CROA). You have the legal right to dispute inaccurate information on your credit report.",
-  },
-  {
-    q: "What information do I need to get started?",
-    a: "To get started, you'll need a copy of your credit reports from all three bureaus (Equifax, Experian, TransUnion), a valid government-issued ID, and proof of address. We'll guide you through the entire process.",
-  },
-];
-
-function FAQ() {
-  const [open, setOpen] = useState<number | null>(null);
-
-  return (
-    <section id="faq" className="py-24 bg-white">
-      <div className="container mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-16">
-          <div className="section-label justify-center mb-4">FAQ</div>
-          <h2
-            className="text-4xl lg:text-5xl font-black text-blue-950 mb-4"
-            style={{ fontFamily: "Montserrat, sans-serif" }}
-          >
-            Your Questions,{" "}
-            <span className="text-blue-600">Answered</span>
-          </h2>
-          <p className="text-slate-500 text-lg">
-            Everything you need to know before we start working together.
-          </p>
-        </div>
-
-        <div className="space-y-0 border border-slate-200 rounded-2xl overflow-hidden shadow-sm">
-          {faqs.map(({ q, a }, i) => (
-            <div key={i} className="faq-item">
-              <button
-                className="w-full flex items-center justify-between px-7 py-5 text-left hover:bg-blue-50/50 transition-colors"
-                onClick={() => setOpen(open === i ? null : i)}
-              >
-                <span
-                  className="font-bold text-blue-950 text-base pr-4"
-                  style={{ fontFamily: "Montserrat, sans-serif" }}
-                >
-                  {q}
-                </span>
-                {open === i ? (
-                  <ChevronUp size={18} className="text-blue-600 flex-shrink-0" />
-                ) : (
-                  <ChevronDown size={18} className="text-slate-400 flex-shrink-0" />
-                )}
-              </button>
-              {open === i && (
-                <div className="px-7 pb-5">
-                  <p className="text-slate-600 leading-relaxed text-sm">{a}</p>
-                </div>
-              )}
-            </div>
-          ))}
-        </div>
-
-        <div className="text-center mt-12">
-          <p className="text-slate-500 mb-4">Still have questions? We're here to help.</p>
-          <a
-            href={TYPEFORM_URL}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="btn-primary"
-          >
-            Book My Free Consultation <ArrowRight size={18} />
-          </a>
-        </div>
-      </div>
-    </section>
-  );
-}
 
 // ─── Footer ───────────────────────────────────────────────────────────────────
 function Footer() {
@@ -858,7 +767,6 @@ export default function Home() {
       <TransformationJourney />
       <Testimonials />
       <BookingCTA />
-      <FAQ />
       <Footer />
     </div>
   );
