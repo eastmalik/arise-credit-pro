@@ -472,80 +472,6 @@ function TransformationJourney() {
   );
 }
 
-// ─── Testimonials ──────────────────────────────────────────────────────────
-const testimonials = [
-  {
-    score: "711",
-    label: "Very Good",
-    points: "+85 pts",
-    quote:
-      "After trying a few credit companies in the past I was skeptical, but I finally found someone who actually kept their word and delivered real results in such a short time. I appreciate everything Malik has done for me!",
-    name: "Verified Client",
-    detail: "Score jumped from 626 to 711",
-  },
-  {
-    score: "144",
-    label: "Points Gained",
-    points: "+144 pts",
-    quote:
-      "144 points is crazy! I never thought my score could jump that fast. Arise Credit Pro made it happen — I can finally qualify for the things I've been working toward.",
-    name: "Verified Client",
-    detail: "TransUnion score increase",
-  },
-  {
-    score: "600",
-    label: "Score Reached",
-    points: "+91 pts in 3 days",
-    quote:
-      "4 accounts removed and my score jumped 91 points in just a few days. I'm blown away by how fast this worked. Malik is the real deal.",
-    name: "Verified Client",
-    detail: "4 accounts removed",
-  },
-  {
-    score: "715",
-    label: "All 3 Bureaus",
-    points: "715 / 707 / 697",
-    quote:
-      "Tapp in with the wizard — he got my people together fast. Everything from personal to business credit he gone make it shake. All you have to do is trust the process. Credit is King!",
-    name: "@livin_legacy0217",
-    detail: "All 3 bureaus improved",
-  },
-];
-
-function Testimonials() {
-  return (
-    <section id="results" className="py-24 bg-white">
-      <div className="container mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        {/* CTA Banner */}
-        <div
-          className="rounded-2xl p-12 text-center"
-          style={{
-            background: "linear-gradient(135deg, oklch(0.18 0.08 264), oklch(0.35 0.18 264))",
-          }}
-        >
-          <h3
-            className="text-3xl lg:text-4xl font-black text-white mb-3"
-            style={{ fontFamily: "Montserrat, sans-serif" }}
-          >
-            Ready to write your own success story?
-          </h3>
-          <p className="text-blue-200 mb-8 max-w-xl mx-auto">
-            Join hundreds of clients who have transformed their credit and financial
-            future with Arise Credit Pro.
-          </p>
-          <a
-            href={TYPEFORM_URL}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="btn-primary text-base"
-          >
-            Start Your Credit Restoration Today <ArrowRight size={18} />
-          </a>
-        </div>
-      </div>
-    </section>
-  );
-}
 
 // ─── Booking CTA ──────────────────────────────────────────────────────────────
 function BookingCTA() {
@@ -747,7 +673,6 @@ export default function Home() {
       <StatsBar />
       <Services />
       <TransformationJourney />
-      <Testimonials />
       <BookingCTA />
       <Footer />
     </div>
