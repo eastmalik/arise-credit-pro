@@ -381,7 +381,98 @@ function Services() {
   );
 }
 
-// ─── Testimonials ─────────────────────────────────────────────────────────────
+/// ─── Transformation Journey ─────────────────────────────────────────────────────
+const journeySteps = [
+  {
+    number: "01",
+    title: "Free Consultation",
+    desc: "We start with a no-cost strategy session to review your credit situation and map out your personalized plan.",
+  },
+  {
+    number: "02",
+    title: "Credit Repair",
+    desc: "We dispute negative items, errors, and inaccuracies across all three bureaus to clean up your credit profile.",
+  },
+  {
+    number: "03",
+    title: "Score Improvement",
+    desc: "With negative items removed, we implement proven strategies to boost your score and build positive history.",
+  },
+  {
+    number: "04",
+    title: "Funding Success",
+    desc: "Once your profile is strong, we connect you with lenders and funding opportunities matched to your goals.",
+  },
+];
+
+function TransformationJourney() {
+  return (
+    <section className="py-24 bg-white">
+      <div className="container mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        {/* Header */}
+        <div className="text-center mb-16">
+          <h2
+            className="text-4xl lg:text-5xl font-black text-blue-950 mb-3"
+            style={{ fontFamily: "Montserrat, sans-serif" }}
+          >
+            Your Transformation Journey
+          </h2>
+          <p className="text-slate-500 text-lg">
+            Four simple steps to credit repair and funding success.
+          </p>
+        </div>
+
+        {/* Steps */}
+        <div className="relative">
+          {/* Connector line (desktop) */}
+          <div className="hidden lg:block absolute top-10 left-[12.5%] right-[12.5%] h-0.5 bg-gradient-to-r from-blue-200 via-blue-400 to-blue-200" />
+
+          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-8">
+            {journeySteps.map((step, i) => (
+              <div key={step.number} className="relative flex flex-col items-center text-center">
+                {/* Step circle */}
+                <div
+                  className="w-20 h-20 rounded-full flex items-center justify-center mb-6 shadow-lg relative z-10"
+                  style={{
+                    background: i % 2 === 0
+                      ? "linear-gradient(135deg, oklch(0.45 0.22 264), oklch(0.35 0.20 264))"
+                      : "linear-gradient(135deg, oklch(0.55 0.22 264), oklch(0.42 0.20 264))",
+                  }}
+                >
+                  <span
+                    className="text-white text-2xl font-black"
+                    style={{ fontFamily: "Montserrat, sans-serif" }}
+                  >
+                    {step.number}
+                  </span>
+                </div>
+                <h3
+                  className="font-black text-blue-950 text-lg mb-2"
+                  style={{ fontFamily: "Montserrat, sans-serif" }}
+                >
+                  {step.title}
+                </h3>
+                <p className="text-slate-500 text-sm leading-relaxed">{step.desc}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {/* CTA */}
+        <div className="text-center mt-14">
+          <a
+            href="#booking"
+            className="btn-primary"
+          >
+            Start Your Journey <ArrowRight size={18} />
+          </a>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+// ─── Testimonials ──────────────────────────────────────────────────────────
 const testimonials = [
   {
     score: "711",
@@ -859,6 +950,7 @@ export default function Home() {
       <Hero />
       <StatsBar />
       <Services />
+      <TransformationJourney />
       <Testimonials />
       <BookingCTA />
       <FAQ />
