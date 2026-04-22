@@ -610,51 +610,7 @@ function BookingCTA() {
             </p>
           </div>
 
-          {/* Right — details card */}
-          <div className="bg-white rounded-2xl shadow-xl shadow-blue-900/10 p-8 border border-blue-100">
-            <h3
-              className="font-black text-blue-950 text-xl mb-6"
-              style={{ fontFamily: "Montserrat, sans-serif" }}
-            >
-              Consultation Details
-            </h3>
-            <div className="grid grid-cols-2 gap-4 mb-8">
-              {details.map(({ label, value }) => (
-                <div key={label} className="bg-blue-50 rounded-xl p-4">
-                  <div className="text-blue-400 text-xs font-bold uppercase tracking-wider mb-1">
-                    {label}
-                  </div>
-                  <div
-                    className="text-blue-950 font-black text-lg"
-                    style={{ fontFamily: "Montserrat, sans-serif" }}
-                  >
-                    {value}
-                  </div>
-                </div>
-              ))}
-            </div>
-            <div className="bg-gradient-to-br from-blue-950 to-blue-800 rounded-xl p-6 text-center">
-              <Phone size={28} className="text-blue-300 mx-auto mb-3" />
-              <p
-                className="text-white font-black text-lg mb-1"
-                style={{ fontFamily: "Montserrat, sans-serif" }}
-              >
-                Ready to get started?
-              </p>
-              <p className="text-blue-200 text-sm mb-4">
-                Fill out our quick intake form and we'll reach out to schedule your
-                call.
-              </p>
-              <a
-                href={TYPEFORM_URL}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="btn-primary w-full justify-center"
-              >
-                Fill Out Intake Form <ArrowRight size={16} />
-              </a>
-            </div>
-          </div>
+
         </div>
       </div>
     </section>
