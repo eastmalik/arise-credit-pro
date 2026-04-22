@@ -355,14 +355,14 @@ function Services() {
         </div>
 
         <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
-          {services.map(({ icon: Icon, title, desc }) => (
+          {services.map(({ title, desc }) => (
             <div
               key={title}
               className="service-card bg-white p-7 shadow-sm border border-slate-100"
               style={{ borderRadius: '12px', height: '305px' }}
             >
               <div className="w-12 h-12 bg-blue-50 rounded-lg flex items-center justify-center mb-5">
-                <Icon size={22} className="text-blue-600" />
+                <span style={{ fontSize: '22px' }}>📱</span>
               </div>
               <h3
                 className="font-black text-blue-950 text-lg mb-3"
