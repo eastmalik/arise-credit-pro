@@ -85,25 +85,23 @@ function Navbar() {
             </div>
           </a>
 
-          {/* Desktop Nav */}
-          <nav className="hidden lg:flex items-center gap-8">
-            {navLinks.map((link) => (
-              <a
-                key={link.label}
-                href={link.href}
-                className={`text-sm font-semibold tracking-wide transition-all duration-300 hover:text-blue-400 relative group ${
-                  scrolled ? "text-slate-700" : "text-white/90"
-                }`}
-                style={{ fontFamily: "Montserrat, sans-serif" }}
-              >
-                {link.label}
-                <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-blue-500 transition-all duration-300 group-hover:w-full" />
-              </a>
-            ))}
-          </nav>
-
-          {/* CTA */}
-          <div className="hidden lg:block">
+          {/* Desktop Nav + CTA grouped on the right */}
+          <div className="hidden lg:flex items-center gap-6">
+            <nav className="flex items-center gap-6">
+              {navLinks.map((link) => (
+                <a
+                  key={link.label}
+                  href={link.href}
+                  className={`text-sm font-semibold tracking-wide transition-all duration-300 hover:text-blue-400 relative group ${
+                    scrolled ? "text-slate-700" : "text-white/90"
+                  }`}
+                  style={{ fontFamily: "Montserrat, sans-serif" }}
+                >
+                  {link.label}
+                  <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-blue-500 transition-all duration-300 group-hover:w-full" />
+                </a>
+              ))}
+            </nav>
             <a
               href={TYPEFORM_URL}
               target="_blank"
