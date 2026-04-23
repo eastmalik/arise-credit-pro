@@ -108,7 +108,7 @@ function Navbar() {
               rel="noopener noreferrer"
               className="btn-primary text-sm py-3 px-6"
             >
-              Book Free Consultation
+              Get Started
             </a>
           </div>
 
@@ -147,7 +147,7 @@ function Navbar() {
               className="btn-primary text-center mt-2"
               onClick={() => setMobileOpen(false)}
             >
-              Book Free Consultation
+              Get Started
             </a>
           </div>
         </div>
@@ -550,31 +550,9 @@ function Footer() {
               </div>
             </div>
             <p className="text-blue-200/80 text-sm leading-relaxed max-w-xs mb-6">
-              Helping individuals and families build powerful credit profiles and
-              unlock financial freedom — one score at a time.
+              Helping individuals build powerful credit profiles and unlock funding.
             </p>
-            <div className="flex gap-3">
-              {[
-                { icon: Instagram, label: "Instagram" },
-                { icon: Facebook, label: "Facebook" },
-              ].map(({ icon: Icon, label }) => (
-                <a
-                  key={label}
-                  href="#"
-                  aria-label={label}
-                  className="w-9 h-9 bg-blue-800/50 hover:bg-blue-600 rounded-lg flex items-center justify-center text-blue-300 hover:text-white transition-all duration-300"
-                >
-                  <Icon size={16} />
-                </a>
-              ))}
-              <a
-                href="mailto:contact@arisecreditpro.com"
-                aria-label="Email"
-                className="w-9 h-9 bg-blue-800/50 hover:bg-blue-600 rounded-lg flex items-center justify-center text-blue-300 hover:text-white transition-all duration-300"
-              >
-                <Mail size={16} />
-              </a>
-            </div>
+
           </div>
 
           {/* Quick Links */}
@@ -633,7 +611,7 @@ function Footer() {
                 rel="noopener noreferrer"
                 className="btn-primary text-sm py-3 px-5"
               >
-                Book Free Consultation
+                Get Started
               </a>
             </div>
           </div>
