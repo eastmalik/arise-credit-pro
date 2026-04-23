@@ -621,18 +621,10 @@ function Footer() {
           </div>
         </div>
 
-        <div className="border-t border-blue-800/50 pt-8 flex flex-col sm:flex-row items-center justify-between gap-4">
-          <p className="text-blue-400 text-xs">
+        <div className="border-t border-blue-800/50 pt-8 flex justify-center">
+          <p className="text-blue-400 text-center" style={{ fontSize: '21px' }}>
             © {new Date().getFullYear()} Arise Credit Pro. All rights reserved.
           </p>
-          <div className="flex gap-6">
-            <a href="#" className="text-blue-400 hover:text-white text-xs transition-colors">
-              Privacy Policy
-            </a>
-            <a href="#" className="text-blue-400 hover:text-white text-xs transition-colors">
-              Terms of Service
-            </a>
-          </div>
         </div>
       </div>
     </footer>
