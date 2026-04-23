@@ -179,13 +179,13 @@ function Hero() {
             Arise Above
             <br />
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-300 to-sky-300">
-              Your Credit Score.
+              Your Credit Score
             </span>
           </h1>
 
           {/* Subheadline */}
           <p className="text-blue-100/90 text-lg sm:text-xl leading-relaxed mb-8 max-w-xl animate-fade-up delay-200">
-            Arise Credit Pro helps individuals build powerful credit profiles, remove negative items, and unlock the access they deserve. Click below and starting today.
+            Arise Credit Pro helps individuals build powerful credit profiles, remove negative items, and unlock the access they deserve.
           </p>
 
 
@@ -333,19 +333,7 @@ function Services() {
   return (
     <section id="services" className="py-24 bg-slate-50">
       <div className="container mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-16">
-          <div className="section-label justify-center mb-4" style={{ fontSize: '40px' }}>Our Services</div>
-          <h2
-            className="text-4xl lg:text-5xl font-black text-blue-950 mb-4"
-            style={{ fontFamily: "Montserrat, sans-serif" }}
-          >
-            Everything You Need to{" "}
-            <span className="text-blue-600">Repair & Rebuild</span>
-          </h2>
-          <p className="text-slate-500 text-lg max-w-2xl mx-auto">
-            Our credit building services are tailored to your unique situation, with real results and full transparency every step of the way.
-          </p>
-        </div>
+
 
         <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
           {services.map(({ emoji, title, desc }) => (
