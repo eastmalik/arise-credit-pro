@@ -185,9 +185,7 @@ function Hero() {
 
           {/* Subheadline */}
           <p className="text-blue-100/90 text-lg sm:text-xl leading-relaxed mb-8 max-w-xl animate-fade-up delay-200">
-            Arise Credit Pro helps individuals and families build powerful credit
-            profiles, remove negative items, and unlock the financial freedom they
-            deserve — starting today.
+            Arise Credit Pro helps individuals build powerful credit profiles, remove negative items, and unlock the access they deserve. Click below and starting today.
           </p>
 
 
@@ -199,11 +197,9 @@ function Hero() {
               rel="noopener noreferrer"
               className="btn-primary text-base animate-pulse-glow"
             >
-              Book My Free Consultation <ArrowRight size={18} />
+              Start Your Transformation <ArrowRight size={18} />
             </a>
-            <a href="#services" className="btn-outline-white text-base">
-              See Our Services
-            </a>
+
           </div>
 
 
@@ -304,7 +300,7 @@ const services = [
   {
     emoji: "📊",
     title: "Credit Analysis",
-    desc: "We pull and review all three bureaus — Equifax, Experian, and TransUnion — to identify every negative item, error, and opportunity for improvement.",
+    desc: "We pull and review from all three bureaus. Equifax, Experian, and TransUnion to identify every negative item, error, and opportunity for improvement.",
   },
   {
     emoji: "🔧",
@@ -314,12 +310,12 @@ const services = [
   {
     emoji: "💰",
     title: "Funding Connection",
-    desc: "Direct access to lenders and funding programs matched to your profile and goals.",
+    desc: "Direct access to lenders and funding programs to match to your profile and goals.",
   },
   {
     emoji: "📈",
     title: "Score Monitoring",
-    desc: "For clients with urgent needs — home purchase, car loan, or job application — our expedited process prioritizes the fastest possible score improvements.",
+    desc: "For clients with urgent needs our expedited process prioritizes the fastest possible score improvements and real time monitoring.",
   },
   {
     emoji: "👥",
@@ -329,7 +325,7 @@ const services = [
   {
     emoji: "🎯",
     title: "Financial Literacy Coaching",
-    desc: "Understanding money is the foundation of lasting financial health. We coach you on budgeting, credit utilization, saving strategies, and building wealth.",
+    desc: "Understanding money is the foundation of lasting financial health. We assist you on budgeting, credit utilization, saving strategies, and growing wealth.",
   },
 ];
 
@@ -347,8 +343,7 @@ function Services() {
             <span className="text-blue-600">Repair & Rebuild</span>
           </h2>
           <p className="text-slate-500 text-lg max-w-2xl mx-auto">
-            Our comprehensive credit building services are tailored to your unique
-            situation, with real results and full transparency every step of the way.
+            Our credit building services are tailored to your unique situation, with real results and full transparency every step of the way.
           </p>
         </div>
 
@@ -416,7 +411,7 @@ function TransformationJourney() {
             Your Transformation Journey
           </h2>
           <p className="text-slate-500 text-lg">
-            Four simple steps to credit repair and funding success.
+            Four simple steps to credit repair and funding access.
           </p>
         </div>
 
@@ -487,9 +482,7 @@ function BookingCTA() {
           Ready to Restore Your Credit?
         </h2>
         <p className="text-slate-700 mb-10 max-w-2xl mx-auto leading-relaxed" style={{ fontSize: "19px" }}>
-          Book your free 30-minute credit consultation. We'll review your situation,
-          identify what's hurting your score, and map out a clear path to financial
-          freedom — at no cost and no obligation.
+          Book your free 30-minute credit consultation. We'll review your situation, identify what's hurting your score, and map out a clear path to financial freedom at no cost and no obligation.
         </p>
         <div className="flex flex-wrap items-center justify-center gap-4">
           <a
