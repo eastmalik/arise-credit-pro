@@ -338,7 +338,7 @@ function Services() {
     <section id="services" className="py-24 bg-slate-50">
       <div className="container mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16">
-          <div className="section-label justify-center mb-4">Our Services</div>
+          <div className="section-label justify-center mb-4" style={{ fontSize: '40px' }}>Our Services</div>
           <h2
             className="text-4xl lg:text-5xl font-black text-blue-950 mb-4"
             style={{ fontFamily: "Montserrat, sans-serif" }}
