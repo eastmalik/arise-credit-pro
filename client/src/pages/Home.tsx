@@ -525,7 +525,7 @@ function Footer() {
       }}
     >
       <div className="container mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <div className="grid lg:grid-cols-4 gap-10 mb-12">
+        <div className="grid lg:grid-cols-5 gap-10 mb-12">
           {/* Brand */}
           <div className="lg:col-span-2">
             <div className="flex items-center gap-3 mb-4">
@@ -555,13 +555,13 @@ function Footer() {
 
           </div>
 
-          {/* Quick Links */}
+          {/* Services */}
           <div>
             <h4
               className="text-white font-black text-sm uppercase tracking-wider mb-4"
               style={{ fontFamily: "Montserrat, sans-serif" }}
             >
-              Quick Links
+              Services
             </h4>
             <ul className="space-y-2">
               {[
@@ -581,39 +581,43 @@ function Footer() {
             </ul>
           </div>
 
-          {/* Contact */}
+          {/* Company */}
           <div>
             <h4
               className="text-white font-black text-sm uppercase tracking-wider mb-4"
               style={{ fontFamily: "Montserrat, sans-serif" }}
             >
-              Contact
+              Company
             </h4>
-            <ul className="space-y-3">
-              <li className="flex items-center gap-2 text-blue-300 text-sm">
-                <Mail size={14} />
-                <a
-                  href="mailto:contact@arisecreditpro.com"
-                  className="hover:text-white transition-colors"
-                >
-                  contact@arisecreditpro.com
-                </a>
+            <ul className="space-y-2">
+              <li>
+                <a href="#" className="text-blue-300 hover:text-white text-sm transition-colors">About Us</a>
               </li>
-              <li className="flex items-center gap-2 text-blue-300 text-sm">
-                <Phone size={14} />
-                <span>Available Mon – Sat</span>
+              <li>
+                <a href="#booking" className="text-blue-300 hover:text-white text-sm transition-colors">Contact</a>
               </li>
             </ul>
-            <div className="mt-6">
-              <a
-                href={TYPEFORM_URL}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="btn-primary text-sm py-3 px-5"
-              >
-                Get Started
-              </a>
-            </div>
+          </div>
+
+          {/* Legal */}
+          <div>
+            <h4
+              className="text-white font-black text-sm uppercase tracking-wider mb-4"
+              style={{ fontFamily: "Montserrat, sans-serif" }}
+            >
+              Legal
+            </h4>
+            <ul className="space-y-2">
+              <li>
+                <a href="#" className="text-blue-300 hover:text-white text-sm transition-colors">Privacy Policy</a>
+              </li>
+              <li>
+                <a href="#" className="text-blue-300 hover:text-white text-sm transition-colors">Terms of Service</a>
+              </li>
+              <li>
+                <a href="#" className="text-blue-300 hover:text-white text-sm transition-colors">Disclaimer</a>
+              </li>
+            </ul>
           </div>
         </div>
 
