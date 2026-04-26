@@ -29,7 +29,7 @@ import {
   Facebook,
 } from "lucide-react";
 
-const TYPEFORM_URL = "https://form.typeform.com/to/dA1KVZ95";
+const TYPEFORM_URL = "https://api.leadconnectorhq.com/widget/form/scRngtj3OIHcuu6Y01XY";
 
 // ─── Navbar ──────────────────────────────────────────────────────────────────
 function Navbar() {
