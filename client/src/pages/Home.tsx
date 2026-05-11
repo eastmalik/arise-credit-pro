@@ -590,7 +590,7 @@ function Footer() {
             </h4>
             <ul className="space-y-2">
               <li>
-                <a href="#" className="text-blue-300 hover:text-white text-sm transition-colors">Privacy Policy</a>
+                <a href="/privacy-policy" className="text-blue-300 hover:text-white text-sm transition-colors">Privacy Policy</a>
               </li>
               <li>
                 <a href="#" className="text-blue-300 hover:text-white text-sm transition-colors">Terms of Service</a>
