@@ -43,7 +43,7 @@ function Navbar() {
   }, []);
 
   const navLinks = [
-    { label: "Services", href: "#services" },
+    { label: "Services", href: "#painpoints" },
     { label: "How It Works", href: "#journey" },
     { label: "Book a Call", href: "#booking" },
   ];
@@ -321,7 +321,7 @@ const painPoints = [
 
 function PainPoints() {
   return (
-    <section className="py-24 bg-white">
+    <section id="painpoints" className="py-24 bg-white">
       <div className="container mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
         {/* Header */}
         <div className="text-center mb-16">
@@ -507,7 +507,7 @@ function BookingCTA() {
             Schedule Free Consultation
           </a>
           <a
-            href="#services"
+            href="#painpoints"
             className="inline-flex items-center gap-2 border-2 border-blue-600 text-blue-700 font-black px-8 py-4 rounded-full text-base hover:bg-blue-50 transition-colors"
             style={{ fontFamily: "Montserrat, sans-serif" }}
           >
@@ -570,7 +570,7 @@ function Footer() {
             </h4>
             <ul className="space-y-2">
               {[
-                { label: "Services", href: "#services" },
+                { label: "Services", href: "#painpoints" },
                 { label: "How It Works", href: "#journey" },
                 { label: "Book a Call", href: "#booking" },
               ].map(({ label, href }) => (
