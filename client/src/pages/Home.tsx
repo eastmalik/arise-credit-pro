@@ -185,7 +185,7 @@ function Hero() {
 
           {/* Subheadline */}
           <p className="text-blue-100/90 text-lg sm:text-xl leading-relaxed mb-8 max-w-xl animate-fade-up delay-200">
-            Arise Credit Pro helps individuals build powerful credit profiles, remove negative items, and unlock the access they deserve.
+            You work hard. You deserve the home, the car, the business funding. Arise Credit Pro is the trusted, done-for-you partner that turns your credit from a barrier into a bridge — to everything you've been working toward.
           </p>
 
 
