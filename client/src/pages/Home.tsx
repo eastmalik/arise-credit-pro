@@ -386,111 +386,6 @@ function PainPoints() {
   );
 }
 
-// ─── Services ─────────────────────────────────────────────────────────────────
-const flowSteps = [
-  {
-    number: "01",
-    emoji: "🔍",
-    title: "Credit Analysis",
-    desc: "We pull all 3 bureau reports and do a comprehensive analysis — identifying every negative item, error, and opportunity for improvement.",
-  },
-  {
-    number: "02",
-    emoji: "⚖️",
-    title: "Strategic Dispute",
-    desc: "Our team files targeted, legally-sound disputes with all three bureaus on your behalf. No generic letters — a custom strategy built for your situation.",
-  },
-  {
-    number: "03",
-    emoji: "📈",
-    title: "Score Building",
-    desc: "We remove items holding your credit score back — negatives, errors, and outdated marks. The right accounts, the right timing, the right moves.",
-  },
-  {
-    number: "04",
-    emoji: "🔓",
-    title: "Funding Connection",
-    desc: "Once your score is ready, we connect you directly to funding sources — business credit, mortgages, auto loans — so you can say YES to your goals.",
-  },
-  {
-    number: "05",
-    emoji: "🏛️",
-    title: "Generational Wealth",
-    desc: "The Flow™ system doesn't stop at a score. We guide you from credit repair → business setup → asset building → a legacy for your family.",
-  },
-];
-
-function Services() {
-  return (
-    <section id="services" className="py-24 bg-slate-50">
-      <div className="container mx-auto max-w-5xl px-4 sm:px-6 lg:px-8">
-
-        {/* Section Header */}
-        <div className="text-center mb-4">
-          <span
-            className="inline-block text-blue-600 text-sm font-bold uppercase tracking-widest mb-3"
-            style={{ fontFamily: "Montserrat, sans-serif" }}
-          >
-            Our System
-          </span>
-          <h2
-            className="text-4xl sm:text-5xl font-black text-blue-950 mb-4 leading-tight"
-            style={{ fontFamily: "Montserrat, sans-serif" }}
-          >
-            Introducing The Flow System
-          </h2>
-          <p className="text-slate-500 text-lg max-w-2xl mx-auto leading-relaxed">
-            A complete financial transformation system — from credit repair to generational wealth. Not a quick fix. A clear path.
-          </p>
-        </div>
-
-        {/* Divider */}
-        <div className="w-16 h-1 bg-blue-600 rounded-full mx-auto mb-16" />
-
-        {/* Steps */}
-        <div className="flex flex-col gap-6">
-          {flowSteps.map(({ number, emoji, title, desc }, idx) => (
-            <div
-              key={title}
-              className="flex gap-6 items-start bg-white rounded-2xl p-7 shadow-sm border border-slate-100 hover:shadow-md transition-shadow duration-300"
-            >
-              {/* Step Number */}
-              <div className="flex-shrink-0 flex flex-col items-center gap-2">
-                <span
-                  className="text-4xl font-black text-blue-100"
-                  style={{ fontFamily: "Montserrat, sans-serif", lineHeight: 1 }}
-                >
-                  {number}
-                </span>
-                {idx < flowSteps.length - 1 && (
-                  <div className="w-0.5 h-8 bg-blue-100 rounded-full" />
-                )}
-              </div>
-
-              {/* Emoji */}
-              <div className="flex-shrink-0 w-14 h-14 bg-blue-50 rounded-xl flex items-center justify-center text-3xl">
-                {emoji}
-              </div>
-
-              {/* Content */}
-              <div className="flex-1 pt-1">
-                <h3
-                  className="font-black text-blue-950 text-xl mb-2"
-                  style={{ fontFamily: "Montserrat, sans-serif" }}
-                >
-                  {title}
-                </h3>
-                <p className="text-slate-500 text-base leading-relaxed">{desc}</p>
-              </div>
-            </div>
-          ))}
-        </div>
-
-      </div>
-    </section>
-  );
-}
-
 /// ─── Transformation Journey ─────────────────────────────────────────────────────
 const journeySteps = [
   {
@@ -505,8 +400,8 @@ const journeySteps = [
   },
   {
     number: "03",
-    title: "Score Improvement",
-    desc: "With negative items removed, we implement proven strategies to boost your score and build positive history.",
+    title: "Wealth Building",
+    desc: "You don't stop at a score. We guide you from credit repair → business setup → asset building → a legacy for your family.",
   },
   {
     number: "04",
@@ -749,7 +644,6 @@ export default function Home() {
       <Hero />
       <StatsBar />
       <PainPoints />
-      <Services />
       <TransformationJourney />
       <BookingCTA />
       <Footer />
