@@ -295,6 +295,97 @@ function StatsBar() {
   );
 }
 
+// ─── Does This Sound Like You ───────────────────────────────────────────────────
+const painPoints = [
+  {
+    emoji: "🏠",
+    title: "Denied for the home your family deserves",
+    desc: "You toured the perfect house. You imagined your kids in the backyard. Then the lender said no — and you had to explain it to your family on the drive home.",
+  },
+  {
+    emoji: "🚗",
+    title: "Rejected at the dealership — in front of everyone",
+    desc: "The salesperson's face said it all. You work hard, you make decent money, but that number on your report keeps slamming doors in your face.",
+  },
+  {
+    emoji: "💼",
+    title: "Your business dream is on hold — again",
+    desc: "You have the plan, the drive, the market. But every lender looks at your personal credit and says no. Your entrepreneurial future is being held hostage by your past.",
+  },
+  {
+    emoji: "😰",
+    title: "Terrified of getting scammed — again",
+    desc: "You've seen the ads. 'Fix your credit in 30 days!' You've been burned before. You don't know who to trust, and every day you wait costs you more in interest.",
+  },
+];
+
+function PainPoints() {
+  return (
+    <section className="py-24 bg-white">
+      <div className="container mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
+        {/* Header */}
+        <div className="text-center mb-16">
+          <h2
+            className="text-4xl sm:text-5xl font-black text-blue-950 mb-6 leading-tight"
+            style={{ fontFamily: "Montserrat, sans-serif" }}
+          >
+            Does This Sound Like You?
+          </h2>
+          <p className="text-slate-600 text-lg sm:text-xl max-w-3xl mx-auto leading-relaxed">
+            You are not irresponsible. You are not a failure. Life happened — a medical bill, a job loss, a divorce — and the credit system punished you for it. Here is what that looks like in real life.
+          </p>
+        </div>
+
+        {/* Pain Point Cards */}
+        <div className="grid sm:grid-cols-2 gap-6 mb-16">
+          {painPoints.map(({ emoji, title, desc }) => (
+            <div
+              key={title}
+              className="flex gap-5 p-7 rounded-2xl border border-slate-100 bg-slate-50 hover:shadow-md transition-shadow duration-300"
+            >
+              <div className="w-14 h-14 flex-shrink-0 bg-blue-100 rounded-xl flex items-center justify-center text-3xl">
+                {emoji}
+              </div>
+              <div>
+                <h3
+                  className="font-black text-blue-950 text-base sm:text-lg mb-2 leading-snug"
+                  style={{ fontFamily: "Montserrat, sans-serif" }}
+                >
+                  {title}
+                </h3>
+                <p className="text-slate-500 text-sm leading-relaxed">{desc}</p>
+              </div>
+            </div>
+          ))}
+        </div>
+
+        {/* Quote Block */}
+        <div
+          className="relative rounded-2xl p-10 text-center overflow-hidden"
+          style={{
+            background: "linear-gradient(135deg, oklch(0.18 0.08 264), oklch(0.30 0.18 264))",
+          }}
+        >
+          {/* Decorative circles */}
+          <div className="absolute -top-8 -left-8 w-40 h-40 rounded-full bg-white/5" />
+          <div className="absolute -bottom-8 -right-8 w-56 h-56 rounded-full bg-white/5" />
+          <blockquote className="relative z-10">
+            <p
+              className="text-white text-xl sm:text-2xl font-semibold leading-relaxed mb-6 max-w-3xl mx-auto"
+              style={{ fontFamily: "Montserrat, sans-serif" }}
+            >
+              &ldquo;You are not alone, and you are certainly not &lsquo;branded for life.&rsquo; You just need a clear path — and a partner who actually knows the way.&rdquo;
+            </p>
+            <cite className="text-blue-200 text-base font-bold not-italic tracking-widest uppercase">
+              — Arise Credit Pro
+            </cite>
+          </blockquote>
+        </div>
+      </div>
+    </section>
+  );
+}
+
 // ─── Services ─────────────────────────────────────────────────────────────────
 const services = [
   {
@@ -619,6 +710,7 @@ export default function Home() {
       <Navbar />
       <Hero />
       <StatsBar />
+      <PainPoints />
       <Services />
       <TransformationJourney />
       <BookingCTA />
