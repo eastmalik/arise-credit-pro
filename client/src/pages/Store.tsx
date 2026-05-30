@@ -10,26 +10,16 @@ export default function Store() {
   const BOOKING_URL =
     "https://api.leadconnectorhq.com/widget/form/scRngtj3OIHcuu6Y01XY";
 
-  const stats = [
-    { value: "500+", label: "Clients Transformed" },
-    { value: "43pts", label: "Avg. Score Increase" },
-    { value: "5/5", label: "Member Rating" },
-    { value: "$2,847", label: "Value — Starting at $99/mo" },
-  ];
-
   const packageItems = [
-    { item: "Up to 30 Dispute Items for 3 Credit Bureaus", value: "$79" },
-    {
-      item: "Professional Dispute Letters & Bureau Submissions",
-      value: "$69",
-    },
-    { item: "AI Dispute Automation (Done-for-You System)", value: "$59" },
-    { item: "Credit Monitoring App", value: "$39" },
-    { item: "Basic Support", value: "$29" },
-    { item: "Credit Restoration eBook", value: "$19" },
+    { item: "Up to 30 Dispute Items for 3 Credit Bureaus" },
+    { item: "Professional Dispute Letters & Bureau Submissions" },
+    { item: "AI Dispute Automation (Done-for-You System)" },
+    { item: "Credit Monitoring App" },
+    { item: "Basic Support" },
+    { item: "Credit Restoration eBook" },
   ];
 
-  const totalValue = "$294";
+  const totalValue = "$330";
   const price = "$99/mo";
 
   return (
@@ -123,33 +113,8 @@ export default function Store() {
         </div>
       </section>
 
-      {/* ── Social Proof Stats ── */}
-      <section className="py-16 px-4 bg-white">
-        <div className="max-w-5xl mx-auto">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
-            {stats.map(({ value, label }) => (
-              <div
-                key={label}
-                className="text-center p-6 rounded-2xl border border-slate-100 shadow-sm bg-white"
-              >
-                <div className="flex items-center justify-center gap-2 mb-2">
-                  <span className="text-yellow-400 text-lg">★</span>
-                  <span
-                    className="text-2xl sm:text-3xl font-black text-blue-700"
-                    style={{ fontFamily: "Montserrat, sans-serif" }}
-                  >
-                    {value}
-                  </span>
-                </div>
-                <p className="text-slate-500 text-sm font-semibold">{label}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
       {/* ── Foundation Package ── */}
-      <section className="py-20 px-4 bg-slate-50">
+      <section className="py-20 px-4 bg-white">
         <div className="max-w-3xl mx-auto">
           {/* Package Header */}
           <div className="text-center mb-10">
@@ -160,16 +125,13 @@ export default function Store() {
               className="text-3xl sm:text-4xl font-black text-blue-950 mb-3"
               style={{ fontFamily: "Montserrat, sans-serif" }}
             >
-              Offer 1 — Foundation Package
+              Our Foundation Package
             </h2>
             <p
               className="text-xl font-bold text-slate-600 mb-2"
               style={{ fontFamily: "Montserrat, sans-serif" }}
             >
               Everything You Need. One Price.
-            </p>
-            <p className="text-slate-500 text-base">
-              No hidden fees. No contracts. Free credit analysis included.
             </p>
           </div>
 
@@ -194,26 +156,23 @@ export default function Store() {
               </p>
             </div>
 
-            {/* Items Table */}
+            {/* Items Table — Value column hidden, items only */}
             <div className="px-6 py-6">
               <table className="w-full">
                 <thead>
                   <tr className="border-b border-slate-100">
                     <th className="text-left text-xs font-black text-slate-400 uppercase tracking-widest pb-3">
-                      Item
-                    </th>
-                    <th className="text-right text-xs font-black text-slate-400 uppercase tracking-widest pb-3">
-                      Value
+                      What You Get
                     </th>
                   </tr>
                 </thead>
                 <tbody>
-                  {packageItems.map(({ item, value }, i) => (
+                  {packageItems.map(({ item }, i) => (
                     <tr
                       key={i}
                       className="border-b border-slate-50 last:border-0"
                     >
-                      <td className="py-4 pr-4">
+                      <td className="py-4">
                         <div className="flex items-start gap-3">
                           <div className="w-5 h-5 bg-blue-100 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
                             <svg className="w-3 h-3 text-blue-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={3}>
@@ -223,29 +182,13 @@ export default function Store() {
                           <span className="text-slate-700 text-sm font-semibold">{item}</span>
                         </div>
                       </td>
-                      <td className="py-4 text-right">
-                        <span className="text-blue-700 font-black text-sm" style={{ fontFamily: "Montserrat, sans-serif" }}>
-                          {value}
-                        </span>
-                      </td>
                     </tr>
                   ))}
                 </tbody>
                 <tfoot>
                   <tr className="border-t-2 border-blue-100">
-                    <td className="pt-4 font-black text-slate-800" style={{ fontFamily: "Montserrat, sans-serif" }}>
-                      Total Value
-                    </td>
-                    <td className="pt-4 text-right font-black text-slate-400 line-through" style={{ fontFamily: "Montserrat, sans-serif" }}>
-                      {totalValue}
-                    </td>
-                  </tr>
-                  <tr>
-                    <td className="pb-4 font-black text-blue-700 text-lg" style={{ fontFamily: "Montserrat, sans-serif" }}>
-                      Your Price Today
-                    </td>
-                    <td className="pb-4 text-right font-black text-blue-700 text-2xl" style={{ fontFamily: "Montserrat, sans-serif" }}>
-                      {price}
+                    <td className="pt-4 pb-2 font-black text-blue-700 text-lg" style={{ fontFamily: "Montserrat, sans-serif" }}>
+                      Your Price Today — {price}
                     </td>
                   </tr>
                 </tfoot>
