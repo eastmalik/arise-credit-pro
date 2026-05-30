@@ -400,13 +400,13 @@ const journeySteps = [
   },
   {
     number: "03",
-    title: "Wealth Building",
-    desc: "You don't stop at a score. We guide you from credit repair → business setup → asset building → a legacy for your family.",
+    title: "Funding Success",
+    desc: "Once your profile is strong, we connect you with lenders and funding opportunities matched to your goals.",
   },
   {
     number: "04",
-    title: "Funding Success",
-    desc: "Once your profile is strong, we connect you with lenders and funding opportunities matched to your goals.",
+    title: "Wealth Building",
+    desc: "You don't stop at a score. We guide you from credit repair → business setup → asset building → a legacy for your family.",
   },
 ];
 
