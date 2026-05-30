@@ -202,7 +202,7 @@ export default function Store() {
                 </div>
                 <p className="text-blue-200 text-sm mt-3 font-semibold">
                   {isMonthly
-                    ? "Cancel anytime. No contracts."
+                    ? "Cancel anytime."
                     : "One-time payment. Full access. No recurring charges."}
                 </p>
               </div>
@@ -255,7 +255,7 @@ export default function Store() {
               </a>
               <p className="text-slate-400 text-xs mt-3">
                 {isMonthly
-                  ? "Cancel anytime. No contracts. Free credit analysis included."
+                  ? "Cancel anytime. Free credit analysis included."
                   : "One-time payment. Full access. No recurring charges."}
               </p>
             </div>
