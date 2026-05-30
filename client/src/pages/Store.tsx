@@ -2,22 +2,80 @@
  * Store Page — Arise Credit Pro
  * Design: Bold Financial Authority — Montserrat headlines, Nunito Sans body
  * Blue (#1d4ed8) + White theme, asymmetric sections, premium feel
+ *
+ * Video Gate: Foundation Package is blurred until the YouTube video is watched
+ * all the way through. Uses YouTube IFrame API onStateChange (state === 0 = ended).
  */
 
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 import { Link } from "wouter";
+
+// Extend Window to include YT IFrame API globals
+declare global {
+  interface Window {
+    YT: any;
+    onYouTubeIframeAPIReady: () => void;
+  }
+}
+
+const VIDEO_ID = "7FGtyAsvLH0";
 
 export default function Store() {
   const BOOKING_URL =
     "https://api.leadconnectorhq.com/widget/form/scRngtj3OIHcuu6Y01XY";
 
   const [billing, setBilling] = useState<"monthly" | "onetime">("monthly");
+  const [videoWatched, setVideoWatched] = useState(false);
+  const [playerReady, setPlayerReady] = useState(false);
+  const playerRef = useRef<any>(null);
+  const containerRef = useRef<HTMLDivElement>(null);
 
+  // Load YouTube IFrame API once
+  useEffect(() => {
+    if (window.YT && window.YT.Player) {
+      initPlayer();
+      return;
+    }
+
+    const tag = document.createElement("script");
+    tag.src = "https://www.youtube.com/iframe_api";
+    document.head.appendChild(tag);
+
+    window.onYouTubeIframeAPIReady = () => {
+      initPlayer();
+    };
+
+    return () => {
+      window.onYouTubeIframeAPIReady = () => {};
+    };
+  }, []);
+
+  function initPlayer() {
+    if (playerRef.current) return; // already initialised
+    playerRef.current = new window.YT.Player("yt-player", {
+      videoId: VIDEO_ID,
+      playerVars: {
+        rel: 0,
+        modestbranding: 1,
+        playsinline: 1,
+      },
+      events: {
+        onReady: () => setPlayerReady(true),
+        onStateChange: (e: any) => {
+          // state 0 = ended
+          if (e.data === 0) {
+            setVideoWatched(true);
+          }
+        },
+      },
+    });
+  }
+
+  const isMonthly = billing === "monthly";
   const originalPrice = 330;
   const monthlyPrice = 99;
   const oneTimePrice = 330;
-  const discount = 0.7; // 70% off
-  const savings = Math.round(originalPrice * discount);
+  const savings = Math.round(originalPrice * 0.7);
 
   const packageItems = [
     { item: "Up to 30 Dispute Items for 3 Credit Bureaus" },
@@ -27,8 +85,6 @@ export default function Store() {
     { item: "Basic Support" },
     { item: "Credit Restoration eBook" },
   ];
-
-  const isMonthly = billing === "monthly";
 
   return (
     <div
@@ -89,38 +145,82 @@ export default function Store() {
 
       {/* ── Video Section ── */}
       <section className="py-16 px-4 bg-slate-50">
-        <div className="max-w-4xl mx-auto">
+        <div className="max-w-2xl mx-auto">
           <p
-            className="text-center text-slate-700 text-lg leading-relaxed mb-10 max-w-3xl mx-auto"
+            className="text-center text-slate-700 text-lg leading-relaxed mb-8 max-w-xl mx-auto"
             style={{ fontFamily: "Nunito Sans, sans-serif" }}
           >
             I sat down with the credit service that helped me rebuild my life — and we put it all on camera. No script. No filters. Just the truth about where I was, what I did, and how I got out.{" "}
             <span className="font-black text-blue-700">Watch this before you scroll one inch further.</span>
           </p>
 
-          {/* Video placeholder — replace src with real embed */}
-          <div className="relative w-full rounded-2xl overflow-hidden shadow-2xl bg-blue-950 aspect-video flex items-center justify-center">
-            <div className="text-center px-8">
-              <div className="w-20 h-20 bg-white/10 rounded-full flex items-center justify-center mx-auto mb-4 border-4 border-white/30">
-                <svg className="w-10 h-10 text-white ml-1" fill="currentColor" viewBox="0 0 24 24">
-                  <path d="M8 5v14l11-7z" />
-                </svg>
-              </div>
-              <p className="text-white font-bold text-lg" style={{ fontFamily: "Montserrat, sans-serif" }}>
-                Your Video Goes Here
-              </p>
-              <p className="text-blue-300 text-sm mt-2">
-                Paste your YouTube or Vimeo embed link to activate
+          {/* YouTube embed — portrait aspect for Shorts */}
+          <div
+            ref={containerRef}
+            className="relative mx-auto rounded-2xl overflow-hidden shadow-2xl bg-blue-950"
+            style={{ maxWidth: "360px", aspectRatio: "9/16" }}
+          >
+            <div id="yt-player" className="w-full h-full" />
+          </div>
+
+          {/* Watch prompt — shown until video ends */}
+          {!videoWatched && playerReady && (
+            <div className="mt-6 flex items-center justify-center gap-2">
+              <span className="inline-block w-2.5 h-2.5 rounded-full bg-blue-600 animate-pulse" />
+              <p className="text-blue-700 font-black text-sm" style={{ fontFamily: "Montserrat, sans-serif" }}>
+                Watch the full video to unlock the offer below
               </p>
             </div>
-          </div>
+          )}
+
+          {/* Unlocked confirmation */}
+          {videoWatched && (
+            <div className="mt-6 flex items-center justify-center gap-2">
+              <span className="text-green-500 text-lg">✓</span>
+              <p className="text-green-600 font-black text-sm" style={{ fontFamily: "Montserrat, sans-serif" }}>
+                Offer unlocked — scroll down to get started!
+              </p>
+            </div>
+          )}
         </div>
       </section>
 
-      {/* ── Foundation Package ── */}
-      <section className="py-20 px-4 bg-white">
-        <div className="max-w-3xl mx-auto">
+      {/* ── Foundation Package (gated behind video) ── */}
+      <section className="py-20 px-4 bg-white relative">
+        {/* Blur + lock overlay — removed once video watched */}
+        {!videoWatched && (
+          <div
+            className="absolute inset-0 z-10 flex flex-col items-center justify-center"
+            style={{
+              backdropFilter: "blur(12px)",
+              WebkitBackdropFilter: "blur(12px)",
+              background: "rgba(255,255,255,0.55)",
+            }}
+          >
+            <div className="bg-blue-950 text-white rounded-3xl px-8 py-8 max-w-sm mx-4 text-center shadow-2xl border border-blue-800">
+              <div className="w-16 h-16 bg-blue-700 rounded-full flex items-center justify-center mx-auto mb-4">
+                <svg className="w-8 h-8 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
+                </svg>
+              </div>
+              <h3
+                className="text-xl font-black text-white mb-2"
+                style={{ fontFamily: "Montserrat, sans-serif" }}
+              >
+                Offer Locked
+              </h3>
+              <p className="text-blue-200 text-sm leading-relaxed">
+                Watch Malik's full story above to unlock the Foundation Package offer.
+              </p>
+              <div className="mt-5 flex items-center justify-center gap-2">
+                <span className="inline-block w-2 h-2 rounded-full bg-blue-400 animate-pulse" />
+                <span className="text-blue-300 text-xs font-bold">Scroll up and press play</span>
+              </div>
+            </div>
+          </div>
+        )}
 
+        <div className={`max-w-3xl mx-auto transition-all duration-700 ${!videoWatched ? "pointer-events-none select-none" : ""}`}>
           {/* Package Header */}
           <div className="text-center mb-10">
             <div className="inline-block bg-red-100 text-red-600 text-xs font-black tracking-widest uppercase px-4 py-2 rounded-full mb-4">
@@ -208,7 +308,7 @@ export default function Store() {
               </div>
             </div>
 
-            {/* Items Table — items only, no value column */}
+            {/* Items Table */}
             <div className="px-6 py-6">
               <table className="w-full">
                 <thead>
@@ -220,10 +320,7 @@ export default function Store() {
                 </thead>
                 <tbody>
                   {packageItems.map(({ item }, i) => (
-                    <tr
-                      key={i}
-                      className="border-b border-slate-50 last:border-0"
-                    >
+                    <tr key={i} className="border-b border-slate-50 last:border-0">
                       <td className="py-4">
                         <div className="flex items-start gap-3">
                           <div className="w-5 h-5 bg-blue-100 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
