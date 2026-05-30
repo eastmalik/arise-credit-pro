@@ -387,66 +387,104 @@ function PainPoints() {
 }
 
 // ─── Services ─────────────────────────────────────────────────────────────────
-const services = [
+const flowSteps = [
   {
-    emoji: "📊",
+    number: "01",
+    emoji: "🔍",
     title: "Credit Analysis",
-    desc: "We pull and review from all three bureaus. Equifax, Experian, and TransUnion to identify every negative item, error, and opportunity for improvement.",
+    desc: "We pull all 3 bureau reports and do a comprehensive analysis — identifying every negative item, error, and opportunity for improvement.",
   },
   {
-    emoji: "🔧",
-    title: "Credit Repair",
-    desc: "We dispute inaccurate collections, charge-offs, late payments, repossessions, and other derogatory marks directly with the credit bureaus and creditors.",
+    number: "02",
+    emoji: "⚖️",
+    title: "Strategic Dispute",
+    desc: "Our team files targeted, legally-sound disputes with all three bureaus on your behalf. No generic letters — a custom strategy built for your situation.",
   },
   {
-    emoji: "💰",
-    title: "Funding Connection",
-    desc: "Direct access to lenders and funding programs to match to your profile and goals.",
-  },
-  {
+    number: "03",
     emoji: "📈",
-    title: "Score Monitoring",
-    desc: "For clients with urgent needs our expedited process prioritizes the fastest possible score improvements and real time monitoring.",
+    title: "Score Building",
+    desc: "We remove items holding your credit score back — negatives, errors, and outdated marks. The right accounts, the right timing, the right moves.",
   },
   {
-    emoji: "👥",
-    title: "Personal Coaching",
-    desc: "We help you negotiate with creditors to settle outstanding debts for less than you owe, reducing your financial burden and clearing the path to a healthier profile.",
+    number: "04",
+    emoji: "🔓",
+    title: "Funding Connection",
+    desc: "Once your score is ready, we connect you directly to funding sources — business credit, mortgages, auto loans — so you can say YES to your goals.",
   },
   {
-    emoji: "🎯",
-    title: "Financial Literacy Coaching",
-    desc: "Understanding money is the foundation of lasting financial health. We assist you on budgeting, credit utilization, saving strategies, and growing wealth.",
+    number: "05",
+    emoji: "🏛️",
+    title: "Generational Wealth",
+    desc: "The Flow™ system doesn't stop at a score. We guide you from credit repair → business setup → asset building → a legacy for your family.",
   },
 ];
 
 function Services() {
   return (
     <section id="services" className="py-24 bg-slate-50">
-      <div className="container mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+      <div className="container mx-auto max-w-5xl px-4 sm:px-6 lg:px-8">
 
+        {/* Section Header */}
+        <div className="text-center mb-4">
+          <span
+            className="inline-block text-blue-600 text-sm font-bold uppercase tracking-widest mb-3"
+            style={{ fontFamily: "Montserrat, sans-serif" }}
+          >
+            Our System
+          </span>
+          <h2
+            className="text-4xl sm:text-5xl font-black text-blue-950 mb-4 leading-tight"
+            style={{ fontFamily: "Montserrat, sans-serif" }}
+          >
+            Introducing The Flow System
+          </h2>
+          <p className="text-slate-500 text-lg max-w-2xl mx-auto leading-relaxed">
+            A complete financial transformation system — from credit repair to generational wealth. Not a quick fix. A clear path.
+          </p>
+        </div>
 
-        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
-          {services.map(({ emoji, title, desc }) => (
+        {/* Divider */}
+        <div className="w-16 h-1 bg-blue-600 rounded-full mx-auto mb-16" />
+
+        {/* Steps */}
+        <div className="flex flex-col gap-6">
+          {flowSteps.map(({ number, emoji, title, desc }, idx) => (
             <div
               key={title}
-              className="service-card bg-white p-7 shadow-sm border border-slate-100"
-              style={{ borderRadius: '12px', height: '305px' }}
+              className="flex gap-6 items-start bg-white rounded-2xl p-7 shadow-sm border border-slate-100 hover:shadow-md transition-shadow duration-300"
             >
-              <div className="w-12 h-12 bg-blue-50 rounded-lg flex items-center justify-center mb-5">
-                <span style={{ fontSize: '24px' }}>{emoji}</span>
+              {/* Step Number */}
+              <div className="flex-shrink-0 flex flex-col items-center gap-2">
+                <span
+                  className="text-4xl font-black text-blue-100"
+                  style={{ fontFamily: "Montserrat, sans-serif", lineHeight: 1 }}
+                >
+                  {number}
+                </span>
+                {idx < flowSteps.length - 1 && (
+                  <div className="w-0.5 h-8 bg-blue-100 rounded-full" />
+                )}
               </div>
-              <h3
-                className="font-black text-blue-950 text-lg mb-3"
-                style={{ fontFamily: "Montserrat, sans-serif" }}
-              >
-                {title}
-              </h3>
-              <p className="text-slate-500 text-sm leading-relaxed">{desc}</p>
+
+              {/* Emoji */}
+              <div className="flex-shrink-0 w-14 h-14 bg-blue-50 rounded-xl flex items-center justify-center text-3xl">
+                {emoji}
+              </div>
+
+              {/* Content */}
+              <div className="flex-1 pt-1">
+                <h3
+                  className="font-black text-blue-950 text-xl mb-2"
+                  style={{ fontFamily: "Montserrat, sans-serif" }}
+                >
+                  {title}
+                </h3>
+                <p className="text-slate-500 text-base leading-relaxed">{desc}</p>
+              </div>
             </div>
           ))}
         </div>
-
 
       </div>
     </section>
