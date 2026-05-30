@@ -30,8 +30,7 @@ export default function Store() {
       {/* ── Sticky Nav ── */}
       <header className="fixed top-0 left-0 right-0 z-50 bg-white/95 backdrop-blur-md border-b border-slate-100 shadow-sm">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
-          <Link href="/">
-            <a className="flex items-center gap-3 cursor-pointer">
+          <Link href="/" className="flex items-center gap-3 cursor-pointer">
               <div className="w-9 h-9 bg-blue-700 rounded-lg flex items-center justify-center">
                 <span className="text-white font-black text-sm" style={{ fontFamily: "Montserrat, sans-serif" }}>AC</span>
               </div>
@@ -41,12 +40,9 @@ export default function Store() {
                 </span>
                 <span className="text-blue-600 text-xs font-bold tracking-widest uppercase">PRO</span>
               </div>
-            </a>
           </Link>
-          <Link href="/">
-            <a className="text-sm font-bold text-slate-600 hover:text-blue-700 transition-colors" style={{ fontFamily: "Montserrat, sans-serif" }}>
-              ← Back to Home
-            </a>
+          <Link href="/" className="text-sm font-bold text-slate-600 hover:text-blue-700 transition-colors" style={{ fontFamily: "Montserrat, sans-serif" }}>
+            ← Back to Home
           </Link>
         </div>
       </header>
@@ -219,10 +215,8 @@ export default function Store() {
         <p className="text-blue-300 text-sm">
           © {new Date().getFullYear()} Arise Credit Pro. All rights reserved.
         </p>
-        <Link href="/">
-          <a className="text-blue-400 hover:text-white text-sm font-bold mt-2 inline-block transition-colors">
-            ← Back to Home
-          </a>
+        <Link href="/" className="text-blue-400 hover:text-white text-sm font-bold mt-2 inline-block transition-colors">
+          ← Back to Home
         </Link>
       </footer>
     </div>
