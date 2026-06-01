@@ -21,8 +21,10 @@ declare global {
 const VIDEO_ID = "7FGtyAsvLH0";
 
 export default function Store() {
-  const BOOKING_URL =
-    "https://Simplecheckout.authorize.net/payment/CatalogPayment.aspx?LinkId=6d566ebe-64ac-44f5-8afb-7c3fa6b9a1e4";
+  const MONTHLY_URL =
+    "https://simplecheckout.authorize.net/payment/CatalogPayment.aspx?LinkId=6d566ebe-64ac-44f5-8afb-7c3fa6b9a1e4";
+  const ONETIME_URL =
+    "https://Simplecheckout.authorize.net/payment/CatalogPayment.aspx?LinkId=51031108-39b4-4d74-b05c-5c4402f8e523";
 
   const [billing, setBilling] = useState<"monthly" | "onetime">("monthly");
   const [videoWatched, setVideoWatched] = useState(false);
@@ -340,7 +342,7 @@ export default function Store() {
             {/* CTA */}
             <div className="px-6 pb-8 text-center">
               <a
-                href={BOOKING_URL}
+                href={isMonthly ? MONTHLY_URL : ONETIME_URL}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="block w-full bg-blue-700 hover:bg-blue-800 text-white font-black text-lg py-5 rounded-2xl transition-all duration-300 shadow-lg hover:shadow-blue-200 hover:shadow-xl"
