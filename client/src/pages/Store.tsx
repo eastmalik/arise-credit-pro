@@ -22,7 +22,7 @@ const VIDEO_ID = "7FGtyAsvLH0";
 
 export default function Store() {
   const BOOKING_URL =
-    "https://api.leadconnectorhq.com/widget/form/scRngtj3OIHcuu6Y01XY";
+    "https://Simplecheckout.authorize.net/payment/CatalogPayment.aspx?LinkId=6d566ebe-64ac-44f5-8afb-7c3fa6b9a1e4";
 
   const [billing, setBilling] = useState<"monthly" | "onetime">("monthly");
   const [videoWatched, setVideoWatched] = useState(false);
