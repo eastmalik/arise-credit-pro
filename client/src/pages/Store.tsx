@@ -22,9 +22,9 @@ const VIDEO_ID = "7FGtyAsvLH0";
 
 export default function Store() {
   const MONTHLY_URL =
-    "https://simplecheckout.authorize.net/payment/CatalogPayment.aspx?LinkId=6d566ebe-64ac-44f5-8afb-7c3fa6b9a1e4";
-  const ONETIME_URL =
     "https://Simplecheckout.authorize.net/payment/CatalogPayment.aspx?LinkId=51031108-39b4-4d74-b05c-5c4402f8e523";
+  const ONETIME_URL =
+    "https://simplecheckout.authorize.net/payment/CatalogPayment.aspx?LinkId=6d566ebe-64ac-44f5-8afb-7c3fa6b9a1e4";
 
   const [billing, setBilling] = useState<"monthly" | "onetime">("monthly");
   const [videoWatched, setVideoWatched] = useState(false);
