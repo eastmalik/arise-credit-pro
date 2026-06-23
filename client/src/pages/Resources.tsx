@@ -3,15 +3,15 @@
  * Design: Bold Financial Authority — Montserrat headlines, Nunito Sans body
  * Blue (#1d4ed8) + White theme
  *
- * Gate: Visitors must enter name + email before downloading any resource.
- * Collected data will be sent to GoHighLevel CRM (webhook URL to be added).
+ * Gate: Visitors must submit the GHL embedded form before downloading.
+ * GHL form captures name + email and sends directly to GHL Contacts.
+ * After form submission, the PDF download button is revealed.
  */
 
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 import { Link } from "wouter";
 
-// ── GHL Webhook — replace with real URL when ready ──
-const GHL_WEBHOOK_URL = ""; // TODO: paste GoHighLevel webhook URL here
+const GHL_FORM_URL = "https://api.leadconnectorhq.com/widget/form/hoQGXKLh9Wh3XbgJYP7G";
 
 interface Resource {
   id: string;
@@ -20,7 +20,7 @@ interface Resource {
   category: string;
   categoryColor: string;
   icon: string;
-  fileUrl: string; // TODO: replace with real uploaded PDF URL
+  fileUrl: string;
 }
 
 const resources: Resource[] = [
@@ -72,43 +72,25 @@ interface GateModalProps {
 }
 
 function GateModal({ resource, onClose }: GateModalProps) {
-  const [name, setName] = useState("");
-  const [email, setEmail] = useState("");
-  const [loading, setLoading] = useState(false);
   const [submitted, setSubmitted] = useState(false);
-  const [error, setError] = useState("");
+  const iframeRef = useRef<HTMLIFrameElement>(null);
 
-  async function handleSubmit(e: React.FormEvent) {
-    e.preventDefault();
-    if (!name.trim() || !email.trim()) {
-      setError("Please fill in both fields.");
-      return;
-    }
-    setError("");
-    setLoading(true);
-
-    try {
-      // Send to GHL if webhook is configured
-      if (GHL_WEBHOOK_URL) {
-        await fetch(GHL_WEBHOOK_URL, {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({
-            name: name.trim(),
-            email: email.trim(),
-            resource: resource.title,
-            source: "Arise Credit Pro — Resources Page",
-          }),
-        });
+  // Listen for GHL form submission message from the iframe
+  useEffect(() => {
+    function handleMessage(event: MessageEvent) {
+      // GHL fires a postMessage when the form is submitted successfully
+      if (
+        event.data &&
+        (event.data.type === "form-submitted" ||
+          event.data.event === "form_submitted" ||
+          (typeof event.data === "string" && event.data.includes("submitted")))
+      ) {
+        setSubmitted(true);
       }
-      setSubmitted(true);
-    } catch {
-      // Still allow download even if webhook fails
-      setSubmitted(true);
-    } finally {
-      setLoading(false);
     }
-  }
+    window.addEventListener("message", handleMessage);
+    return () => window.removeEventListener("message", handleMessage);
+  }, []);
 
   function handleDownload() {
     if (resource.fileUrl) {
@@ -119,14 +101,14 @@ function GateModal({ resource, onClose }: GateModalProps) {
 
   return (
     <div
-      className="fixed inset-0 z-50 flex items-center justify-center px-4"
-      style={{ background: "rgba(15,23,42,0.75)", backdropFilter: "blur(6px)" }}
+      className="fixed inset-0 z-50 flex items-center justify-center px-4 py-6"
+      style={{ background: "rgba(15,23,42,0.80)", backdropFilter: "blur(6px)" }}
       onClick={(e) => { if (e.target === e.currentTarget) onClose(); }}
     >
-      <div className="bg-white rounded-3xl shadow-2xl w-full max-w-md overflow-hidden">
+      <div className="bg-white rounded-3xl shadow-2xl w-full max-w-md overflow-hidden flex flex-col max-h-[90vh]">
         {/* Modal Header */}
         <div
-          className="px-8 py-6 text-white"
+          className="px-8 py-5 text-white flex-shrink-0"
           style={{ background: "linear-gradient(135deg, #0f172a, #1d4ed8)" }}
         >
           <div className="flex items-center justify-between mb-2">
@@ -145,63 +127,37 @@ function GateModal({ resource, onClose }: GateModalProps) {
             {resource.title}
           </h3>
           <p className="text-blue-200 text-sm mt-1">
-            Enter your info below to get instant free access.
+            {submitted
+              ? "You're in! Your download is ready below."
+              : "Enter your info below to get instant free access."}
           </p>
         </div>
 
         {/* Modal Body */}
-        <div className="px-8 py-6">
+        <div className="flex-1 overflow-y-auto">
           {!submitted ? (
-            <form onSubmit={handleSubmit} className="space-y-4">
-              <div>
-                <label
-                  className="block text-xs font-black text-slate-500 uppercase tracking-widest mb-1.5"
-                  style={{ fontFamily: "Montserrat, sans-serif" }}
+            <div className="px-4 py-4">
+              {/* GHL Embedded Form */}
+              <iframe
+                ref={iframeRef}
+                src={GHL_FORM_URL}
+                style={{ width: "100%", height: "420px", border: "none" }}
+                scrolling="no"
+                id={`ghl-form-${resource.id}`}
+                title="Get Free Access"
+              />
+              {/* Manual fallback — if iframe detection doesn't fire */}
+              <div className="mt-3 text-center">
+                <button
+                  onClick={() => setSubmitted(true)}
+                  className="text-xs text-slate-400 underline hover:text-blue-600 transition-colors"
                 >
-                  Full Name
-                </label>
-                <input
-                  type="text"
-                  value={name}
-                  onChange={(e) => setName(e.target.value)}
-                  placeholder="Your full name"
-                  className="w-full border border-slate-200 rounded-xl px-4 py-3 text-slate-800 text-sm font-semibold focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
-                  style={{ fontFamily: "Nunito Sans, sans-serif" }}
-                />
+                  Already submitted? Click here to get your download
+                </button>
               </div>
-              <div>
-                <label
-                  className="block text-xs font-black text-slate-500 uppercase tracking-widest mb-1.5"
-                  style={{ fontFamily: "Montserrat, sans-serif" }}
-                >
-                  Email Address
-                </label>
-                <input
-                  type="email"
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
-                  placeholder="your@email.com"
-                  className="w-full border border-slate-200 rounded-xl px-4 py-3 text-slate-800 text-sm font-semibold focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
-                  style={{ fontFamily: "Nunito Sans, sans-serif" }}
-                />
-              </div>
-              {error && (
-                <p className="text-red-500 text-xs font-bold">{error}</p>
-              )}
-              <button
-                type="submit"
-                disabled={loading}
-                className="w-full bg-blue-700 hover:bg-blue-800 disabled:opacity-60 text-white font-black text-base py-4 rounded-2xl transition-all duration-300 shadow-lg"
-                style={{ fontFamily: "Montserrat, sans-serif" }}
-              >
-                {loading ? "Sending..." : "Get Free Access →"}
-              </button>
-              <p className="text-slate-400 text-xs text-center">
-                No spam. Unsubscribe anytime.
-              </p>
-            </form>
+            </div>
           ) : (
-            <div className="text-center py-4">
+            <div className="text-center px-8 py-8">
               <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
                 <svg className="w-8 h-8 text-green-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
                   <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
@@ -216,21 +172,16 @@ function GateModal({ resource, onClose }: GateModalProps) {
               <p className="text-slate-500 text-sm mb-6">
                 Your download is ready. Click below to open the PDF.
               </p>
-              {resource.fileUrl ? (
-                <button
-                  onClick={handleDownload}
-                  className="w-full bg-blue-700 hover:bg-blue-800 text-white font-black text-base py-4 rounded-2xl transition-all duration-300 shadow-lg"
-                  style={{ fontFamily: "Montserrat, sans-serif" }}
-                >
-                  Download PDF →
-                </button>
-              ) : (
-                <div className="bg-blue-50 border border-blue-100 rounded-2xl px-6 py-4">
-                  <p className="text-blue-700 font-bold text-sm">
-                    📬 This resource will be emailed to you shortly.
-                  </p>
-                </div>
-              )}
+              <button
+                onClick={handleDownload}
+                className="w-full bg-blue-700 hover:bg-blue-800 text-white font-black text-base py-4 rounded-2xl transition-all duration-300 shadow-lg"
+                style={{ fontFamily: "Montserrat, sans-serif" }}
+              >
+                Download PDF →
+              </button>
+              <p className="text-slate-400 text-xs mt-3">
+                Opens in a new tab. Save it to your device.
+              </p>
             </div>
           )}
         </div>
