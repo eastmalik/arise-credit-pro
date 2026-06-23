@@ -141,8 +141,8 @@ function GateModal({ resource, onClose }: GateModalProps) {
               <iframe
                 ref={iframeRef}
                 src={GHL_FORM_URL}
-                style={{ width: "100%", height: "420px", border: "none" }}
-                scrolling="no"
+                style={{ width: "100%", height: "680px", border: "none" }}
+                scrolling="yes"
                 id={`ghl-form-${resource.id}`}
                 title="Get Free Access"
               />
