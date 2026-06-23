@@ -25,34 +25,34 @@ interface Resource {
 
 const resources: Resource[] = [
   {
-    id: "credit-repair-guide",
-    title: "Credit Repair Guide",
-    description:
-      "A step-by-step breakdown of how to dispute errors, remove negative items, and build a strong credit profile from the ground up.",
-    category: "Credit Repair",
-    categoryColor: "bg-blue-100 text-blue-700",
-    icon: "📋",
-    fileUrl: "", // TODO: upload PDF and paste URL here
-  },
-  {
-    id: "consumer-law-reference",
+    id: "legal-reference-sheet",
     title: "Consumer Law Reference Sheet",
     description:
-      "Know your rights. A concise reference covering the FCRA, FDCPA, and ECOA — the laws that protect you when disputing credit.",
+      "Know your rights. A concise reference covering the FCRA, FDCPA, and ECOA — the federal laws that protect you when disputing credit and dealing with collectors.",
     category: "Consumer Law",
     categoryColor: "bg-purple-100 text-purple-700",
     icon: "⚖️",
-    fileUrl: "", // TODO: upload PDF and paste URL here
+    fileUrl: "/manus-storage/legal_reference_sheet_456e0e97.pdf",
   },
   {
-    id: "credit-access-guide",
-    title: "Credit Access Guide",
+    id: "credit-is-access",
+    title: "Credit Is Access Guide",
     description:
-      "Learn how to leverage your credit score to access funding, loans, and financial opportunities most people don't know exist.",
+      "Learn how to leverage your credit score to unlock funding, loans, and financial opportunities most people don't even know exist.",
     category: "Credit Access",
     categoryColor: "bg-green-100 text-green-700",
     icon: "🔑",
-    fileUrl: "", // TODO: upload PDF and paste URL here
+    fileUrl: "/manus-storage/CreditIsAccess_AriseCreditPro_7dae5a51.pdf",
+  },
+  {
+    id: "business-startup-guide",
+    title: "Business Start-Up Guide",
+    description:
+      "Everything you need to launch your business the right way — from entity formation to building business credit and accessing capital.",
+    category: "Business",
+    categoryColor: "bg-blue-100 text-blue-700",
+    icon: "🚀",
+    fileUrl: "/manus-storage/BusinessStartUpGuide_AriseCreditPro_39a880d8.pdf",
   },
   {
     id: "meta-instagram-ads-lab",
@@ -62,7 +62,7 @@ const resources: Resource[] = [
     category: "Marketing",
     categoryColor: "bg-orange-100 text-orange-700",
     icon: "📱",
-    fileUrl: "", // TODO: upload PDF and paste URL here
+    fileUrl: "/manus-storage/Meta_Instagram_Ads_MODERN_43d7937c.pdf",
   },
 ];
 
