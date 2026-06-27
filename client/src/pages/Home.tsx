@@ -46,7 +46,7 @@ function Navbar() {
     { label: "Services", href: "#painpoints" },
     { label: "How It Works", href: "#journey" },
     { label: "Book a Call", href: "#booking" },
-    { label: "Store", href: "/store" },
+    { label: "Testimonials", href: "/store" },
     { label: "Resources", href: "/resources" },
   ];
 
@@ -575,7 +575,7 @@ function Footer() {
                 { label: "Services", href: "#painpoints" },
                 { label: "How It Works", href: "#journey" },
                 { label: "Book a Call", href: "#booking" },
-                { label: "Store", href: "/store" },
+                { label: "Testimonials", href: "/store" },
                 { label: "Resources", href: "/resources" },
               ].map(({ label, href }) => (
                 <li key={label}>
