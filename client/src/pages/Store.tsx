@@ -1,13 +1,10 @@
 /**
  * Pricing Page — Arise Credit Pro
  * Design: Bold Financial Authority — Montserrat headlines, Nunito Sans body
- * Blue (#1d4ed8) + Gold accent for premium tier, side-by-side package comparison
- *
- * Package 1 — Credit Repair Only: $99/mo or $330 one-time
- * Package 2 — Bronze (Credit Repair + Funding): $750 one-time
+ * Blue (#1d4ed8) + White theme, 3-column Option A / B / C comparison
+ * All three options are Tier 1 / Bronze Package price points
  */
 
-import { useState } from "react";
 import { Link } from "wouter";
 
 const VIDEO_ID = "7FGtyAsvLH0";
@@ -19,34 +16,90 @@ const ONETIME_URL =
 const BRONZE_URL =
   "https://simplecheckout.authorize.net/payment/CatalogPayment.aspx?LinkId=60615327-8e20-4014-814c-517f1d233816";
 
-const BRONZE_FLYER = "/manus-storage/TheFlow_Bronze_Flyer_Final_90103dc1.webp";
+type Feature = { text: string; included: boolean };
+
+interface PricingOption {
+  label: string;
+  title: string;
+  price: string;
+  period: string;
+  description: string;
+  highlight: boolean;
+  badge?: string;
+  url: string;
+  cta: string;
+  features: Feature[];
+}
+
+const options: PricingOption[] = [
+  {
+    label: "Option A",
+    title: "Monthly Plan",
+    price: "$99",
+    period: "/mo",
+    description: "Credit repair on a flexible monthly basis. Cancel anytime.",
+    highlight: false,
+    url: MONTHLY_URL,
+    cta: "Get Started — $99/mo",
+    features: [
+      { text: "Credit Repair Services (Done For You)", included: true },
+      { text: "Up to 30 Dispute Items — All 3 Bureaus", included: true },
+      { text: "Professional Dispute Letters & Submissions", included: true },
+      { text: "AI Dispute Automation System", included: true },
+      { text: "Credit Monitoring App", included: true },
+      { text: "Credit Restoration eBook", included: true },
+      { text: "Report Rent / Mortgage to Credit Report", included: false },
+      { text: "LLC Structure Step by Step", included: false },
+      { text: "Business & Personal Funding Access", included: false },
+    ],
+  },
+  {
+    label: "Option B",
+    title: "One-Time Payment",
+    price: "$330",
+    period: "",
+    description: "Full credit repair access. One payment, no recurring charges.",
+    highlight: true,
+    badge: "Most Popular",
+    url: ONETIME_URL,
+    cta: "Get Started — $330",
+    features: [
+      { text: "Credit Repair Services (Done For You)", included: true },
+      { text: "Up to 30 Dispute Items — All 3 Bureaus", included: true },
+      { text: "Professional Dispute Letters & Submissions", included: true },
+      { text: "AI Dispute Automation System", included: true },
+      { text: "Credit Monitoring App", included: true },
+      { text: "Credit Restoration eBook", included: true },
+      { text: "Report Rent / Mortgage to Credit Report", included: true },
+      { text: "LLC Structure Step by Step", included: false },
+      { text: "Business & Personal Funding Access", included: false },
+    ],
+  },
+  {
+    label: "Option C",
+    title: "Credit + Funding",
+    price: "$750",
+    period: "",
+    description: "The complete path — credit repair AND business funding access.",
+    highlight: false,
+    badge: "Best Value",
+    url: BRONZE_URL,
+    cta: "Get Started — $750",
+    features: [
+      { text: "Credit Repair Services (Done For You)", included: true },
+      { text: "Up to 30 Dispute Items — All 3 Bureaus", included: true },
+      { text: "Professional Dispute Letters & Submissions", included: true },
+      { text: "AI Dispute Automation System", included: true },
+      { text: "Credit Monitoring App", included: true },
+      { text: "Credit Restoration eBook", included: true },
+      { text: "Report Rent / Mortgage to Credit Report", included: true },
+      { text: "LLC Structure Step by Step", included: true },
+      { text: "Business & Personal Funding Access", included: true },
+    ],
+  },
+];
 
 export default function Store() {
-  const [billing, setBilling] = useState<"monthly" | "onetime">("monthly");
-  const isMonthly = billing === "monthly";
-
-  const creditRepairItems = [
-    "Credit Repair Services (Done For You)",
-    "Up to 30 Dispute Items — All 3 Bureaus",
-    "Professional Dispute Letters & Submissions",
-    "AI Dispute Automation System",
-    "Report Rent / Mortgage History to Credit Report",
-    "Credit Building Action Plan",
-    "Credit Monitoring App",
-    "Credit Restoration eBook",
-    "Basic Support",
-  ];
-
-  const bronzeItems = [
-    "Everything in Credit Repair Package",
-    "Correctly Structure Your LLC Step by Step",
-    "Business & Personal Funding Access",
-    "Access to Capital / Line of Credit",
-    "Grants Research & Guidance",
-    "Credit Building Action Plan",
-    "Priority Support",
-  ];
-
   return (
     <div
       className="min-h-screen bg-white"
@@ -96,7 +149,7 @@ export default function Store() {
             This Is the Conversation That Changed Everything.
           </h2>
           <p
-            className="text-lg text-blue-100 font-bold mb-2"
+            className="text-lg text-blue-100 font-bold"
             style={{ fontFamily: "Montserrat, sans-serif" }}
           >
             My Story. My Proof. My Why.
@@ -109,13 +162,10 @@ export default function Store() {
         <div className="max-w-2xl mx-auto">
           <p
             className="text-center text-slate-700 text-lg leading-relaxed mb-8 max-w-xl mx-auto"
-            style={{ fontFamily: "Nunito Sans, sans-serif" }}
           >
             I sat down with the credit service that helped me rebuild my life — and we put it all on camera. No script. No filters. Just the truth about where I was, what I did, and how I got out.{" "}
             <span className="font-black text-blue-700">Watch this before you scroll one inch further.</span>
           </p>
-
-          {/* YouTube embed — portrait aspect for Shorts */}
           <div
             className="relative mx-auto rounded-2xl overflow-hidden shadow-2xl bg-blue-950"
             style={{ maxWidth: "360px", aspectRatio: "9/16" }}
@@ -132,260 +182,141 @@ export default function Store() {
         </div>
       </section>
 
-      {/* ── The Flow — 3-step journey ── */}
-      <section className="py-14 px-4 bg-white">
-        <div className="max-w-4xl mx-auto">
-          <h2
-            className="text-center text-2xl sm:text-3xl font-black text-blue-950 mb-10"
-            style={{ fontFamily: "Montserrat, sans-serif" }}
-          >
-            The Path to Financial Freedom
-          </h2>
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-0">
-            {[
-              { step: "01", title: "Build Your Personal Credit Profile", icon: "📊" },
-              { step: "02", title: "Correctly Structure Your LLC for Max Funding", icon: "🏛️" },
-              { step: "03", title: "Access Capital — Line of Credit & Grants", icon: "💰" },
-            ].map((item, i) => (
-              <div key={i} className="flex flex-col sm:flex-row items-center">
-                <div className="flex flex-col items-center text-center px-6 py-6 bg-gradient-to-b from-blue-50 to-white rounded-2xl border border-blue-100 shadow-sm w-52">
-                  <span className="text-3xl mb-2">{item.icon}</span>
-                  <span className="text-xs font-black text-blue-400 tracking-widest uppercase mb-1">Step {item.step}</span>
-                  <p className="text-sm font-black text-blue-950 leading-snug" style={{ fontFamily: "Montserrat, sans-serif" }}>{item.title}</p>
-                </div>
-                {i < 2 && (
-                  <div className="flex items-center justify-center my-2 sm:my-0 sm:mx-1">
-                    <svg className="w-6 h-6 text-blue-400 rotate-90 sm:rotate-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
-                      <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
-                    </svg>
-                  </div>
-                )}
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
       {/* ── Pricing Section ── */}
-      <section className="py-20 px-4 bg-slate-50">
+      <section className="py-20 px-4 bg-white">
         <div className="max-w-6xl mx-auto">
+
           {/* Section Header */}
-          <div className="text-center mb-14">
-            <div className="inline-block bg-red-100 text-red-600 text-xs font-black tracking-widest uppercase px-4 py-2 rounded-full mb-4">
-              🔥 Choose Your Path — Limited Time Pricing
+          <div className="text-center mb-4">
+            <div className="inline-block bg-blue-100 text-blue-700 text-xs font-black tracking-widest uppercase px-4 py-2 rounded-full mb-4">
+              Tier 1 — Bronze Package
             </div>
             <h2
               className="text-3xl sm:text-4xl font-black text-blue-950 mb-3"
               style={{ fontFamily: "Montserrat, sans-serif" }}
             >
-              Two Packages. One Goal.
+              Product Price Package List
             </h2>
             <p className="text-slate-500 text-lg max-w-xl mx-auto">
-              Whether you're starting with credit repair or ready to go all the way to funding — we have a path built for you.
+              Choose the option that fits where you are right now. All three paths lead to the same destination — financial freedom.
             </p>
           </div>
 
-          {/* Side-by-Side Cards */}
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-start">
-
-            {/* ── Card 1: Credit Repair Only ── */}
-            <div className="bg-white rounded-3xl shadow-xl overflow-hidden border border-blue-100 flex flex-col">
-              {/* Card Header */}
+          {/* 3-Column Grid */}
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-0 md:gap-0 items-stretch mt-12 border border-blue-100 rounded-2xl overflow-hidden shadow-xl">
+            {options.map((opt, idx) => (
               <div
-                className="px-8 pt-8 pb-6 text-center"
-                style={{ background: "linear-gradient(135deg, #0f172a, #1d4ed8)" }}
+                key={idx}
+                className={`flex flex-col ${
+                  opt.highlight
+                    ? "bg-blue-700 text-white"
+                    : "bg-white text-slate-800"
+                } ${idx === 1 ? "md:scale-[1.02] md:z-10 md:shadow-2xl" : ""} relative`}
               >
-                <div className="inline-block bg-blue-500/30 text-blue-100 text-xs font-black tracking-widest uppercase px-3 py-1 rounded-full mb-3">
-                  Credit Repair
-                </div>
-                <h3
-                  className="text-2xl font-black text-white mb-1"
-                  style={{ fontFamily: "Montserrat, sans-serif" }}
+                {/* Column Header */}
+                <div
+                  className={`px-6 pt-8 pb-6 text-center border-b ${
+                    opt.highlight ? "border-blue-500" : "border-blue-100"
+                  }`}
                 >
-                  Foundation Package
-                </h3>
-                <p className="text-blue-300 text-sm mb-5">For those ready to repair and rebuild their credit</p>
+                  {/* Badge */}
+                  {opt.badge && (
+                    <div className={`inline-block text-xs font-black tracking-widest uppercase px-3 py-1 rounded-full mb-3 ${
+                      opt.highlight
+                        ? "bg-white/20 text-white"
+                        : "bg-blue-100 text-blue-700"
+                    }`}>
+                      {opt.badge}
+                    </div>
+                  )}
+                  {!opt.badge && <div className="h-7 mb-3" />}
 
-                {/* Savings bar */}
-                <div className="flex items-center justify-center gap-3 mb-3">
-                  <span className="text-blue-300 text-sm font-semibold line-through">Original: $330</span>
-                  <span className="bg-red-500 text-white text-xs font-black px-2 py-0.5 rounded-full">70% OFF</span>
-                </div>
-                <p className="text-green-400 text-sm font-black mb-5">You save $231 today 🎉</p>
-
-                {/* Toggle */}
-                <div className="inline-flex bg-white/10 rounded-2xl p-1 mb-5">
-                  <button
-                    onClick={() => setBilling("monthly")}
-                    className={`px-5 py-2 rounded-xl text-sm font-black transition-all duration-200 ${
-                      isMonthly ? "bg-white text-blue-700 shadow-md" : "text-blue-200 hover:text-white"
+                  {/* Option Label */}
+                  <div
+                    className={`inline-block font-black text-xs tracking-widest uppercase px-4 py-1.5 rounded mb-3 ${
+                      opt.highlight ? "bg-white text-blue-700" : "bg-blue-700 text-white"
                     }`}
                     style={{ fontFamily: "Montserrat, sans-serif" }}
                   >
-                    Monthly
-                  </button>
-                  <button
-                    onClick={() => setBilling("onetime")}
-                    className={`px-5 py-2 rounded-xl text-sm font-black transition-all duration-200 ${
-                      !isMonthly ? "bg-white text-blue-700 shadow-md" : "text-blue-200 hover:text-white"
-                    }`}
-                    style={{ fontFamily: "Montserrat, sans-serif" }}
-                  >
-                    One-Time
-                  </button>
-                </div>
+                    {opt.label}
+                  </div>
 
-                {/* Price */}
-                <div className="transition-all duration-300">
-                  <div className="flex items-end justify-center gap-1">
+                  {/* Price */}
+                  <div className="flex items-end justify-center gap-0.5 mb-1">
                     <span
-                      className="text-6xl font-black text-white leading-none"
+                      className={`text-5xl font-black leading-none ${opt.highlight ? "text-white" : "text-blue-950"}`}
                       style={{ fontFamily: "Montserrat, sans-serif" }}
                     >
-                      {isMonthly ? "$99" : "$330"}
+                      {opt.price}
                     </span>
-                    {isMonthly && <span className="text-blue-300 text-lg font-bold mb-1">/mo</span>}
+                    {opt.period && (
+                      <span className={`text-base font-bold mb-1 ${opt.highlight ? "text-blue-200" : "text-slate-400"}`}>
+                        {opt.period}
+                      </span>
+                    )}
                   </div>
-                  <p className="text-blue-200 text-sm mt-2 font-semibold">
-                    {isMonthly ? "Cancel anytime." : "One-time payment. Full access. No recurring charges."}
+
+                  <p className={`text-sm mt-3 leading-snug ${opt.highlight ? "text-blue-100" : "text-slate-500"}`}>
+                    {opt.description}
                   </p>
                 </div>
-              </div>
 
-              {/* Items */}
-              <div className="px-6 py-6 flex-1">
-                <p className="text-xs font-black text-slate-400 uppercase tracking-widest mb-4">What's Included</p>
-                <ul className="space-y-3">
-                  {creditRepairItems.map((item, i) => (
-                    <li key={i} className="flex items-start gap-3">
-                      <div className="w-5 h-5 bg-blue-100 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
-                        <svg className="w-3 h-3 text-blue-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={3}>
-                          <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
-                        </svg>
-                      </div>
-                      <span className="text-slate-700 text-sm font-semibold">{item}</span>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-
-              {/* CTA */}
-              <div className="px-6 pb-8 text-center">
-                <a
-                  href={isMonthly ? MONTHLY_URL : ONETIME_URL}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="block w-full bg-blue-700 hover:bg-blue-800 text-white font-black text-lg py-5 rounded-2xl transition-all duration-300 shadow-lg hover:shadow-blue-200 hover:shadow-xl"
-                  style={{ fontFamily: "Montserrat, sans-serif" }}
-                >
-                  {isMonthly ? "Get Started — $99/mo →" : "Get Started — $330 One-Time →"}
-                </a>
-                <p className="text-slate-400 text-xs mt-3">
-                  {isMonthly ? "Cancel anytime. Free credit analysis included." : "Secure one-time payment. Instant access."}
-                </p>
-              </div>
-            </div>
-
-            {/* ── Card 2: Bronze Package (Credit Repair + Funding) ── */}
-            <div className="bg-white rounded-3xl shadow-2xl overflow-hidden border-2 border-yellow-400 flex flex-col relative">
-              {/* Most Popular Badge */}
-              <div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 z-10">
-                <div
-                  className="px-5 py-1.5 rounded-full text-xs font-black tracking-widest uppercase text-white shadow-lg"
-                  style={{ background: "linear-gradient(90deg, #b45309, #d97706, #f59e0b)" }}
-                >
-                  ⚡ Best Value
-                </div>
-              </div>
-
-              {/* Card Header */}
-              <div
-                className="px-8 pt-10 pb-6 text-center"
-                style={{ background: "linear-gradient(135deg, #1c1917, #292524, #44403c)" }}
-              >
-                <div className="inline-block border border-yellow-400/60 text-yellow-300 text-xs font-black tracking-widest uppercase px-3 py-1 rounded-full mb-3">
-                  Credit Repair + Funding
-                </div>
-                <h3
-                  className="text-2xl font-black text-white mb-1"
-                  style={{ fontFamily: "Montserrat, sans-serif" }}
-                >
-                  Bronze Package
-                </h3>
-                <p className="text-yellow-200/70 text-sm mb-5">For those ready to repair credit AND access capital</p>
-
-                {/* Bronze Flyer Image */}
-                <div className="mx-auto mb-5 rounded-xl overflow-hidden shadow-lg" style={{ maxWidth: "220px" }}>
-                  <img
-                    src={BRONZE_FLYER}
-                    alt="Bronze Package"
-                    className="w-full h-auto object-cover"
-                  />
+                {/* Feature List */}
+                <div className="px-6 py-6 flex-1">
+                  <ul className="space-y-3">
+                    {opt.features.map((feat, fi) => (
+                      <li key={fi} className="flex items-start gap-3">
+                        {feat.included ? (
+                          <div className={`w-5 h-5 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5 ${
+                            opt.highlight ? "bg-white/20" : "bg-blue-100"
+                          }`}>
+                            <svg className={`w-3 h-3 ${opt.highlight ? "text-white" : "text-blue-600"}`} fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={3}>
+                              <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
+                            </svg>
+                          </div>
+                        ) : (
+                          <div className={`w-5 h-5 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5 ${
+                            opt.highlight ? "bg-white/10" : "bg-slate-100"
+                          }`}>
+                            <svg className={`w-3 h-3 ${opt.highlight ? "text-blue-300" : "text-slate-300"}`} fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={3}>
+                              <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
+                            </svg>
+                          </div>
+                        )}
+                        <span className={`text-sm font-semibold ${
+                          feat.included
+                            ? opt.highlight ? "text-white" : "text-slate-700"
+                            : opt.highlight ? "text-blue-300/60" : "text-slate-300"
+                        }`}>
+                          {feat.text}
+                        </span>
+                      </li>
+                    ))}
+                  </ul>
                 </div>
 
-                {/* Price */}
-                <div className="flex items-end justify-center gap-1 mb-2">
-                  <span
-                    className="text-6xl font-black text-white leading-none"
+                {/* CTA Button */}
+                <div className={`px-6 pb-8 pt-2 border-t ${opt.highlight ? "border-blue-500" : "border-blue-100"}`}>
+                  <a
+                    href={opt.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className={`block w-full text-center font-black text-base py-4 rounded-xl transition-all duration-300 shadow-md ${
+                      opt.highlight
+                        ? "bg-white text-blue-700 hover:bg-blue-50"
+                        : "bg-blue-700 text-white hover:bg-blue-800"
+                    }`}
                     style={{ fontFamily: "Montserrat, sans-serif" }}
                   >
-                    $750
-                  </span>
-                </div>
-                <p className="text-yellow-300 text-sm font-black">One-Time Investment</p>
-                <p className="text-stone-400 text-xs mt-1">Full access. No recurring charges.</p>
-              </div>
-
-              {/* Items */}
-              <div className="px-6 py-6 flex-1">
-                <p className="text-xs font-black text-slate-400 uppercase tracking-widest mb-4">What's Included</p>
-                <ul className="space-y-3">
-                  {bronzeItems.map((item, i) => (
-                    <li key={i} className="flex items-start gap-3">
-                      <div
-                        className="w-5 h-5 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5"
-                        style={{ background: "linear-gradient(135deg, #b45309, #d97706)" }}
-                      >
-                        <svg className="w-3 h-3 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={3}>
-                          <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
-                        </svg>
-                      </div>
-                      <span className="text-slate-700 text-sm font-semibold">{item}</span>
-                    </li>
-                  ))}
-                </ul>
-
-                {/* Divider callout */}
-                <div className="mt-6 p-4 rounded-2xl border border-yellow-200 bg-yellow-50">
-                  <p className="text-xs font-black text-yellow-700 uppercase tracking-widest mb-1">The Full Journey</p>
-                  <p className="text-sm text-yellow-800 font-semibold leading-relaxed">
-                    Build your credit → Structure your LLC → Access business & personal funding. This is the complete path.
-                  </p>
+                    {opt.cta}
+                  </a>
                 </div>
               </div>
-
-              {/* CTA */}
-              <div className="px-6 pb-8 text-center">
-                <a
-                  href={BRONZE_URL}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="block w-full text-white font-black text-lg py-5 rounded-2xl transition-all duration-300 shadow-lg"
-                  style={{
-                    background: "linear-gradient(135deg, #b45309, #d97706, #f59e0b)",
-                    fontFamily: "Montserrat, sans-serif",
-                  }}
-                >
-                  Get the Bronze Package — $750 →
-                </a>
-                <p className="text-slate-400 text-xs mt-3">Secure one-time payment. Full access. Priority support.</p>
-              </div>
-            </div>
-
+            ))}
           </div>
 
           {/* Bottom trust line */}
-          <div className="mt-12 text-center">
+          <div className="mt-10 text-center">
             <p className="text-slate-400 text-sm">
               🔒 All payments processed securely through Authorize.net &nbsp;·&nbsp; Questions?{" "}
               <a href="/#booking" className="text-blue-600 font-bold hover:underline">Book a free call</a>
