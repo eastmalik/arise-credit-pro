@@ -16,8 +16,8 @@ const MONTHLY_URL =
   "https://Simplecheckout.authorize.net/payment/CatalogPayment.aspx?LinkId=51031108-39b4-4d74-b05c-5c4402f8e523";
 const ONETIME_URL =
   "https://simplecheckout.authorize.net/payment/CatalogPayment.aspx?LinkId=6d566ebe-64ac-44f5-8afb-7c3fa6b9a1e4";
-// $750 Bronze Package link — to be updated once Authorize.net link is created
-const BRONZE_URL = "#";
+const BRONZE_URL =
+  "https://simplecheckout.authorize.net/payment/CatalogPayment.aspx?LinkId=60615327-8e20-4014-814c-517f1d233816";
 
 const BRONZE_FLYER = "/manus-storage/TheFlow_Bronze_Flyer_Final_90103dc1.webp";
 
