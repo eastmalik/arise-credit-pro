@@ -33,16 +33,17 @@ interface PricingOption {
 
 const options: PricingOption[] = [
   {
-    label: "Option A",
+    label: "",
     title: "Monthly Plan",
     price: "$99",
     period: "/mo",
-    description: "Credit repair on a flexible monthly basis. Cancel anytime.",
+    description: "Credit restoration on a flexible monthly basis. Cancel anytime.",
     highlight: false,
+    badge: "Most Popular",
     url: MONTHLY_URL,
     cta: "Get Started — $99/mo",
     features: [
-      { text: "Credit Repair Services (Done For You)", included: true },
+      { text: "Credit Restoration Services (Done For You)", included: true },
       { text: "Up to 30 Dispute Items — All 3 Bureaus", included: true },
       { text: "Professional Dispute Letters & Submissions", included: true },
       { text: "AI Dispute Automation System", included: true },
@@ -54,17 +55,17 @@ const options: PricingOption[] = [
     ],
   },
   {
-    label: "Option B",
+    label: "",
     title: "One-Time Payment",
     price: "$330",
     period: "",
-    description: "Full credit repair access. One payment, no recurring charges.",
+    description: "Full credit restoration access. One payment, no recurring charges.",
     highlight: true,
-    badge: "Most Popular",
+    badge: "Best Value",
     url: ONETIME_URL,
     cta: "Get Started — $330",
     features: [
-      { text: "Credit Repair Services (Done For You)", included: true },
+      { text: "Credit Restoration Services (Done For You)", included: true },
       { text: "Up to 30 Dispute Items — All 3 Bureaus", included: true },
       { text: "Professional Dispute Letters & Submissions", included: true },
       { text: "AI Dispute Automation System", included: true },
@@ -76,17 +77,16 @@ const options: PricingOption[] = [
     ],
   },
   {
-    label: "Option C",
-    title: "Credit + Funding",
+    label: "",
+    title: "Credit Restoration + Funding",
     price: "$750",
     period: "",
-    description: "The complete path — credit repair AND business funding access.",
+    description: "The complete path — credit restoration AND business funding access.",
     highlight: false,
-    badge: "Best Value",
     url: BRONZE_URL,
     cta: "Get Started — $750",
     features: [
-      { text: "Credit Repair Services (Done For You)", included: true },
+      { text: "Credit Restoration Services (Done For You)", included: true },
       { text: "Up to 30 Dispute Items — All 3 Bureaus", included: true },
       { text: "Professional Dispute Letters & Submissions", included: true },
       { text: "AI Dispute Automation System", included: true },
@@ -231,15 +231,17 @@ export default function Store() {
                   )}
                   {!opt.badge && <div className="h-7 mb-3" />}
 
-                  {/* Option Label */}
-                  <div
-                    className={`inline-block font-black text-xs tracking-widest uppercase px-4 py-1.5 rounded mb-3 ${
-                      opt.highlight ? "bg-white text-blue-700" : "bg-blue-700 text-white"
-                    }`}
-                    style={{ fontFamily: "Montserrat, sans-serif" }}
-                  >
-                    {opt.label}
-                  </div>
+                  {/* Option Label — hidden when empty */}
+                  {opt.label && (
+                    <div
+                      className={`inline-block font-black text-xs tracking-widest uppercase px-4 py-1.5 rounded mb-3 ${
+                        opt.highlight ? "bg-white text-blue-700" : "bg-blue-700 text-white"
+                      }`}
+                      style={{ fontFamily: "Montserrat, sans-serif" }}
+                    >
+                      {opt.label}
+                    </div>
+                  )}
 
                   {/* Price */}
                   <div className="flex items-end justify-center gap-0.5 mb-1">
