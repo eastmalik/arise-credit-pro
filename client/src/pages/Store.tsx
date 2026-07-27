@@ -7,16 +7,8 @@
  * all the way through. Uses YouTube IFrame API onStateChange (state === 0 = ended).
  */
 
-import { useState, useEffect, useRef } from "react";
+import { useState } from "react";
 import { Link } from "wouter";
-
-// Extend Window to include YT IFrame API globals
-declare global {
-  interface Window {
-    YT: any;
-    onYouTubeIframeAPIReady: () => void;
-  }
-}
 
 const VIDEO_ID = "7FGtyAsvLH0";
 
@@ -27,51 +19,6 @@ export default function Store() {
     "https://simplecheckout.authorize.net/payment/CatalogPayment.aspx?LinkId=6d566ebe-64ac-44f5-8afb-7c3fa6b9a1e4";
 
   const [billing, setBilling] = useState<"monthly" | "onetime">("monthly");
-  const [videoWatched, setVideoWatched] = useState(false);
-  const [playerReady, setPlayerReady] = useState(false);
-  const playerRef = useRef<any>(null);
-  const containerRef = useRef<HTMLDivElement>(null);
-
-  // Load YouTube IFrame API once
-  useEffect(() => {
-    if (window.YT && window.YT.Player) {
-      initPlayer();
-      return;
-    }
-
-    const tag = document.createElement("script");
-    tag.src = "https://www.youtube.com/iframe_api";
-    document.head.appendChild(tag);
-
-    window.onYouTubeIframeAPIReady = () => {
-      initPlayer();
-    };
-
-    return () => {
-      window.onYouTubeIframeAPIReady = () => {};
-    };
-  }, []);
-
-  function initPlayer() {
-    if (playerRef.current) return; // already initialised
-    playerRef.current = new window.YT.Player("yt-player", {
-      videoId: VIDEO_ID,
-      playerVars: {
-        rel: 0,
-        modestbranding: 1,
-        playsinline: 1,
-      },
-      events: {
-        onReady: () => setPlayerReady(true),
-        onStateChange: (e: any) => {
-          // state 0 = ended
-          if (e.data === 0) {
-            setVideoWatched(true);
-          }
-        },
-      },
-    });
-  }
 
   const isMonthly = billing === "monthly";
   const originalPrice = 330;
@@ -158,71 +105,26 @@ export default function Store() {
 
           {/* YouTube embed — portrait aspect for Shorts */}
           <div
-            ref={containerRef}
             className="relative mx-auto rounded-2xl overflow-hidden shadow-2xl bg-blue-950"
             style={{ maxWidth: "360px", aspectRatio: "9/16" }}
           >
-            <div id="yt-player" className="w-full h-full" />
+            <iframe
+              src={`https://www.youtube.com/embed/${VIDEO_ID}?rel=0&modestbranding=1&playsinline=1`}
+              title="Arise Credit Pro Story"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allowFullScreen
+              className="w-full h-full"
+              style={{ border: "none" }}
+            />
           </div>
 
-          {/* Watch prompt — shown until video ends */}
-          {!videoWatched && playerReady && (
-            <div className="mt-6 flex items-center justify-center gap-2">
-              <span className="inline-block w-2.5 h-2.5 rounded-full bg-blue-600 animate-pulse" />
-              <p className="text-blue-700 font-black text-sm" style={{ fontFamily: "Montserrat, sans-serif" }}>
-                Watch the full video to unlock the offer below
-              </p>
-            </div>
-          )}
 
-          {/* Unlocked confirmation */}
-          {videoWatched && (
-            <div className="mt-6 flex items-center justify-center gap-2">
-              <span className="text-green-500 text-lg">✓</span>
-              <p className="text-green-600 font-black text-sm" style={{ fontFamily: "Montserrat, sans-serif" }}>
-                Offer unlocked — scroll down to get started!
-              </p>
-            </div>
-          )}
         </div>
       </section>
 
-      {/* ── Foundation Package (gated behind video) ── */}
+      {/* ── Foundation Package ── */}
       <section className="py-20 px-4 bg-white relative">
-        {/* Blur + lock overlay — removed once video watched */}
-        {!videoWatched && (
-          <div
-            className="absolute inset-0 z-10 flex flex-col items-center justify-center"
-            style={{
-              backdropFilter: "blur(12px)",
-              WebkitBackdropFilter: "blur(12px)",
-              background: "rgba(255,255,255,0.55)",
-            }}
-          >
-            <div className="bg-blue-950 text-white rounded-3xl px-8 py-8 max-w-sm mx-4 text-center shadow-2xl border border-blue-800">
-              <div className="w-16 h-16 bg-blue-700 rounded-full flex items-center justify-center mx-auto mb-4">
-                <svg className="w-8 h-8 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-                  <path strokeLinecap="round" strokeLinejoin="round" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
-                </svg>
-              </div>
-              <h3
-                className="text-xl font-black text-white mb-2"
-                style={{ fontFamily: "Montserrat, sans-serif" }}
-              >
-                Offer Locked
-              </h3>
-              <p className="text-blue-200 text-sm leading-relaxed">
-                Watch Malik's full story above to unlock the Foundation Package offer.
-              </p>
-              <div className="mt-5 flex items-center justify-center gap-2">
-                <span className="inline-block w-2 h-2 rounded-full bg-blue-400 animate-pulse" />
-                <span className="text-blue-300 text-xs font-bold">Scroll up and press play</span>
-              </div>
-            </div>
-          </div>
-        )}
-
-        <div className={`max-w-3xl mx-auto transition-all duration-700 ${!videoWatched ? "pointer-events-none select-none" : ""}`}>
+        <div className="max-w-3xl mx-auto">
           {/* Package Header */}
           <div className="text-center mb-10">
             <div className="inline-block bg-red-100 text-red-600 text-xs font-black tracking-widest uppercase px-4 py-2 rounded-full mb-4">
