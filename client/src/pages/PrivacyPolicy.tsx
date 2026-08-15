@@ -1,4 +1,5 @@
 import { Link } from "wouter";
+import ClientPortalCTA from "@/components/ClientPortalCTA";
 
 // Design: Blue & White financial services theme — Montserrat headings, Nunito Sans body
 // Clean legal document layout with sticky back-to-top nav and branded header
@@ -204,6 +205,8 @@ export default function PrivacyPolicy() {
           </Link>
         </div>
       </div>
+
+      <ClientPortalCTA />
 
       {/* Footer */}
       <div className="bg-slate-900 text-slate-400 text-center py-6 text-sm" style={{ fontFamily: "Nunito Sans, sans-serif" }}>

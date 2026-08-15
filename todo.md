@@ -2,4 +2,8 @@
 - [x] Update the middle one-time Pricing card from $330 to $350.
 - [x] Update the Credit Restoration + Funding Pricing card from $750 to $600.
 - [x] Verify all visible Pricing page labels and call-to-action text reflect the new amounts.
-- [ ] Save a checkpoint for the verified Pricing page update.
+- [x] Save a checkpoint for the verified Pricing page update.
+- [x] Identify every website page that needs the Current Client portal section.
+- [x] Add a consistent Current Client portal section above the footer on each page.
+- [x] Use a placeholder portal destination until Emperor provides the final link.
+- [ ] Verify all page layouts and save a checkpoint.

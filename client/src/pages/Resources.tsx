@@ -10,6 +10,7 @@
 
 import { useState, useEffect, useRef } from "react";
 import { Link } from "wouter";
+import ClientPortalCTA from "@/components/ClientPortalCTA";
 
 const GHL_FORM_URL = "https://api.leadconnectorhq.com/widget/form/hoQGXKLh9Wh3XbgJYP7G";
 
@@ -305,6 +306,8 @@ export default function Resources() {
           </p>
         </div>
       </section>
+
+      <ClientPortalCTA />
 
       {/* ── Footer Strip ── */}
       <footer className="py-8 px-4 bg-blue-950 text-center">

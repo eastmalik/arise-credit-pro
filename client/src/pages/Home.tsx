@@ -28,6 +28,7 @@ import {
   Instagram,
   Facebook,
 } from "lucide-react";
+import ClientPortalCTA from "@/components/ClientPortalCTA";
 
 const TYPEFORM_URL = "https://api.leadconnectorhq.com/widget/form/scRngtj3OIHcuu6Y01XY";
 
@@ -650,6 +651,7 @@ export default function Home() {
       <PainPoints />
       <TransformationJourney />
       <BookingCTA />
+      <ClientPortalCTA />
       <Footer />
     </div>
   );

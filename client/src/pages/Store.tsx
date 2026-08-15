@@ -6,6 +6,7 @@
  */
 
 import { Link } from "wouter";
+import ClientPortalCTA from "@/components/ClientPortalCTA";
 
 const VIDEO_ID = "7FGtyAsvLH0";
 
@@ -326,6 +327,8 @@ export default function Store() {
           </div>
         </div>
       </section>
+
+      <ClientPortalCTA />
 
       {/* ── Footer ── */}
       <footer className="py-10 px-4 bg-blue-950 text-center">
