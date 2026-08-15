@@ -1,7 +1,7 @@
 /**
  * Pricing Page — Arise Credit Pro
  * Design: Bold Financial Authority — Montserrat headlines, Nunito Sans body
- * Blue (#1d4ed8) + White theme, 3-column Option A / B / C comparison
+ * Blue (#1d4ed8) + White theme, three-column package comparison
  * All three options are Tier 1 / Bronze Package price points
  */
 
@@ -35,13 +35,13 @@ const options: PricingOption[] = [
   {
     label: "",
     title: "Monthly Plan",
-    price: "$99",
+    price: "$120",
     period: "/mo",
     description: "Credit restoration on a flexible monthly basis. Cancel anytime.",
     highlight: false,
     badge: "Most Popular",
     url: MONTHLY_URL,
-    cta: "Get Started — $99/mo",
+    cta: "Get Started — $120/mo",
     features: [
       { text: "Credit Restoration Services (Done For You)", included: true },
       { text: "Up to 30 Dispute Items — All 3 Bureaus", included: true },
@@ -57,13 +57,13 @@ const options: PricingOption[] = [
   {
     label: "",
     title: "One-Time Payment",
-    price: "$330",
+    price: "$350",
     period: "",
     description: "Full credit restoration access. One payment, no recurring charges.",
     highlight: true,
     badge: "Best Value",
     url: ONETIME_URL,
-    cta: "Get Started — $330",
+    cta: "Get Started — $350",
     features: [
       { text: "Credit Restoration Services (Done For You)", included: true },
       { text: "Up to 30 Dispute Items — All 3 Bureaus", included: true },
@@ -79,12 +79,12 @@ const options: PricingOption[] = [
   {
     label: "",
     title: "Credit Restoration + Funding",
-    price: "$750",
+    price: "$600",
     period: "",
     description: "The complete path — credit restoration AND business funding access.",
     highlight: false,
     url: BRONZE_URL,
-    cta: "Get Started — $750",
+    cta: "Get Started — $600",
     features: [
       { text: "Credit Restoration Services (Done For You)", included: true },
       { text: "Up to 30 Dispute Items — All 3 Bureaus", included: true },

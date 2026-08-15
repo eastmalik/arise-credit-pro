@@ -1,0 +1,5 @@
+- [x] Update the monthly Pricing card from $99/mo to $120/mo.
+- [x] Update the middle one-time Pricing card from $330 to $350.
+- [x] Update the Credit Restoration + Funding Pricing card from $750 to $600.
+- [x] Verify all visible Pricing page labels and call-to-action text reflect the new amounts.
+- [ ] Save a checkpoint for the verified Pricing page update.
