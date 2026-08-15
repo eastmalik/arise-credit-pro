@@ -6,4 +6,4 @@
 - [x] Identify every website page that needs the Current Client portal section.
 - [x] Add a consistent Current Client portal section above the footer on each page.
 - [x] Use a placeholder portal destination until Emperor provides the final link.
-- [ ] Verify all page layouts and save a checkpoint.
+- [x] Verify all page layouts and save a checkpoint.

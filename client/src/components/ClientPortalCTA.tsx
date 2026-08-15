@@ -1,14 +1,12 @@
 /**
  * Current Client Portal CTA — Arise Credit Pro
  * Design: Bold Financial Authority — blue and white, Montserrat headings
- * Update CLIENT_PORTAL_URL when Emperor provides the destination.
+ * Secure ScoreXer portal destination for existing clients.
  */
 
-const CLIENT_PORTAL_URL = "";
+const CLIENT_PORTAL_URL = "https://secure.scorexer.com/Portal/login.jsp";
 
 export default function ClientPortalCTA() {
-  const isPlaceholder = !CLIENT_PORTAL_URL;
-
   return (
     <section
       id="client-portal"
@@ -33,20 +31,15 @@ export default function ClientPortalCTA() {
           Access your account and track your credit restoration progress in real time.
         </p>
         <a
-          href={CLIENT_PORTAL_URL || "#client-portal"}
-          onClick={(event) => {
-            if (isPlaceholder) event.preventDefault();
-          }}
-          aria-disabled={isPlaceholder}
-          title={isPlaceholder ? "Client portal link coming soon" : "Open Client Login Portal"}
+          href={CLIENT_PORTAL_URL}
+          target="_blank"
+          rel="noopener noreferrer"
+          title="Open Client Login Portal"
           className="inline-flex items-center justify-center rounded-xl bg-blue-700 px-8 py-3.5 text-sm font-black text-white shadow-lg shadow-blue-700/20 transition-colors hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-200"
           style={{ fontFamily: "Montserrat, sans-serif" }}
         >
           Client Login Portal
         </a>
-        {isPlaceholder && (
-          <p className="mt-3 text-xs text-slate-400">Portal link coming soon.</p>
-        )}
       </div>
     </section>
   );
