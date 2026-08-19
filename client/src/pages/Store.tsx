@@ -60,7 +60,7 @@ const options: PricingOption[] = [
     title: "One-Time Payment",
     price: "$350",
     period: "",
-    description: "Full credit restoration access. One-Time Payment for 3 Months Only.",
+    description: "Full credit restoration access. One-Time Payment for 3 Months.",
     highlight: true,
     badge: "Best Value",
     url: ONETIME_URL,
