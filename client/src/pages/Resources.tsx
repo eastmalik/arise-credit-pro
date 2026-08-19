@@ -6,6 +6,7 @@
  * Download behavior: PDFs are available immediately without a form gate.
  */
 
+import { useState } from "react";
 import { Link } from "wouter";
 import ClientPortalCTA from "@/components/ClientPortalCTA";
 
@@ -63,6 +64,34 @@ const resources: Resource[] = [
 ];
 
 export default function Resources() {
+  const [downloadingId, setDownloadingId] = useState<string | null>(null);
+  const [downloadError, setDownloadError] = useState<string | null>(null);
+
+  async function handleDownload(resource: Resource) {
+    setDownloadingId(resource.id);
+    setDownloadError(null);
+
+    try {
+      const response = await fetch(resource.fileUrl);
+      if (!response.ok) throw new Error("The file could not be downloaded.");
+
+      const file = await response.blob();
+      const objectUrl = URL.createObjectURL(file);
+      const link = document.createElement("a");
+      link.href = objectUrl;
+      link.download = resource.fileUrl.split("/").pop() || `${resource.id}.pdf`;
+      link.style.display = "none";
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+      URL.revokeObjectURL(objectUrl);
+    } catch {
+      setDownloadError("We could not start that download. Please try again.");
+    } finally {
+      setDownloadingId(null);
+    }
+  }
+
   return (
     <div
       className="min-h-screen bg-white"
@@ -139,21 +168,28 @@ export default function Resources() {
                 </div>
 
                 <div className="px-7 pb-7">
-                  <a
-                    href={resource.fileUrl}
-                    download={`${resource.id}.pdf`}
+                  <button
+                    type="button"
+                    onClick={() => handleDownload(resource)}
+                    disabled={downloadingId === resource.id}
                     className="w-full bg-blue-700 hover:bg-blue-800 text-white font-black text-sm py-3.5 rounded-2xl transition-all duration-300 flex items-center justify-center gap-2 group-hover:shadow-md focus:outline-none focus:ring-4 focus:ring-blue-200"
                     style={{ fontFamily: "Montserrat, sans-serif" }}
                   >
                     <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5} aria-hidden="true">
                       <path strokeLinecap="round" strokeLinejoin="round" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
                     </svg>
-                    Download Free PDF
-                  </a>
+                    {downloadingId === resource.id ? "Preparing Download..." : "Download Free PDF"}
+                  </button>
                 </div>
               </article>
             ))}
           </div>
+
+          {downloadError && (
+            <p className="mt-6 text-center text-sm font-semibold text-red-600" role="alert">
+              {downloadError}
+            </p>
+          )}
 
           <p className="text-center text-slate-400 text-sm mt-10">
             More resources coming soon. Check back regularly.
