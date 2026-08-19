@@ -1,0 +1,92 @@
+flowchart TB
+  ROOT([Arise Credit Pro<br/>Website + GoHighLevel System])
+
+  subgraph WEB[Website Entry Points]
+    direction LR
+    BOOK[Book a Call / Get Started<br/>LeadConnector booking form]
+    RES[Resources page<br/>GHL embedded access form]
+    PRICE[Pricing page<br/>$120 monthly · $350 3 months · $600 6 months]
+    PORTAL[Client Login Portal<br/>ScoreXer]
+  end
+
+  ROOT --> WEB
+
+  BOOK --> CONTACT[GoHighLevel contact<br/>created or updated]
+  CONTACT --> CONSULT[Booked Credit Repair Consultation<br/>from Website Form]
+  CONSULT --> BOOKED[Opportunity stage:<br/>Booked Credit Repair Consultation]
+  BOOKED --> APPT{Appointment outcome}
+  APPT -->|Attended| FOLLOW[Credit Repair Lead<br/>Follow-up Pipeline]
+  APPT -->|No-show| NOSHOW[No Show Pipeline]
+
+  RES --> RESOURCECONTACT[GoHighLevel contact<br/>created or updated]
+  RESOURCECONTACT --> RESOURCEFLOW[Arise Credit Pro — Resource Download<br/>Welcome Pipeline]
+  RESOURCEFLOW --> RESOURCEDELIVERY[Welcome / follow-up<br/>for resource lead]
+
+  PRICE --> AUTH[Authorize.net Simple Checkout]
+  AUTH --> PAYMENT[Payment succeeds<br/>in Authorize.net]
+  PAYMENT -. Current manual handoff .-> REVIEW[Review payment notification<br/>in Authorize.net]
+  REVIEW --> ASSIGN[Create/find GHL contact<br/>set opportunity value + plan tag]
+  ASSIGN --> ENROLL[New Enrollment Pipeline]
+
+  subgraph ROUTING[Current GHL Plan Tier Routing Workflow]
+    direction TB
+    TRIGGER[Trigger: Pipeline Stage Changed]
+    ROUTER{Check Which Plan Selected}
+    FOUNDATION[If tag includes foundation]
+    GROWTH[If tag includes growth]
+    ELITE[If tag includes elite]
+    NONE[No matching plan tag]
+
+    TRIGGER --> ROUTER
+    ROUTER --> FOUNDATION
+    ROUTER --> GROWTH
+    ROUTER --> ELITE
+    ROUTER --> NONE
+
+    FOUNDATION --> FTAG[Tag: Foundation Plan Active]
+    FTAG --> FEMAIL[Foundation Plan Confirmation]
+    FEMAIL --> READY[Move to Ready To Process]
+
+    GROWTH --> GTAG[Tag: Growth Plan Active]
+    GTAG --> GEMAIL[Growth Plan Confirmation]
+    GEMAIL --> READY
+
+    ELITE --> ETAG[Tag: Elite Plan Active]
+    ETAG --> EEMAIL[Elite Plan Confirmation]
+    EEMAIL --> READY
+
+    NONE --> NOTAG[Tag: Plan Not Selected]
+  end
+
+  ENROLL --> TRIGGER
+  READY --> AGREEMENT[Sending Service Agreement<br/>Pipeline]
+  AGREEMENT --> WELCOME[Send Welcome Email<br/>Pipeline]
+  WELCOME --> PROCESS[Ready To Process<br/>Pipeline]
+
+  PAYMENT -. Possible issue / payment reminder .-> PAYFOLLOW[Payment Follow-up Pipeline]
+  PORTAL --> TRACK[Clients track their<br/>credit restoration progress]
+
+  subgraph ALIGNMENT[Pricing-to-Automation Alignment Needed]
+    direction TB
+    NEWTAGS[Recommended tag names:<br/>monthly-120 · onetime-350 · credit-funding-600]
+    GAP[Update current router conditions<br/>foundation / growth / elite to match<br/>the current pricing structure]
+    AUTO[Future option: Authorize.net payment<br/>webhook → GHL contact, tag, and opportunity]
+    NEWTAGS --> GAP --> AUTO
+  end
+
+  REVIEW -. Needs process decision .-> NEWTAGS
+  ROUTER -. Current naming needs update .-> GAP
+
+  classDef core fill:#1d4ed8,stroke:#0f3a99,color:#ffffff,stroke-width:2px;
+  classDef form fill:#dbeafe,stroke:#2563eb,color:#0f172a,stroke-width:1.5px;
+  classDef workflow fill:#eff6ff,stroke:#60a5fa,color:#0f172a,stroke-width:1.5px;
+  classDef action fill:#ecfdf5,stroke:#10b981,color:#064e3b,stroke-width:1.5px;
+  classDef warning fill:#fff7ed,stroke:#f97316,color:#7c2d12,stroke-width:1.5px;
+  classDef future fill:#fefce8,stroke:#ca8a04,color:#713f12,stroke-width:1.5px;
+
+  class ROOT core;
+  class BOOK,RES,PRICE,PORTAL,CONTACT,RESOURCECONTACT,AUTH form;
+  class CONSULT,RESOURCEFLOW,TRIGGER,ROUTER,FOUNDATION,GROWTH,ELITE,NONE,ENROLL,AGREEMENT,WELCOME,PROCESS,PAYFOLLOW,NOSHOW,FOLLOW workflow;
+  class BOOKED,APPT,RESOURCEDELIVERY,PAYMENT,ASSIGN,FTAG,FEMAIL,GTAG,GEMAIL,ETAG,EEMAIL,READY,NOTAG,TRACK,REVIEW action;
+  class GAP warning;
+  class NEWTAGS,AUTO future;

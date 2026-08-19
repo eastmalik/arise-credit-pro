@@ -3,16 +3,11 @@
  * Design: Bold Financial Authority — Montserrat headlines, Nunito Sans body
  * Blue (#1d4ed8) + White theme
  *
- * Gate: Visitors must submit the GHL embedded form before downloading.
- * GHL form captures name + email and sends directly to GHL Contacts.
- * After form submission, the PDF download button is revealed.
+ * Download behavior: PDFs are available immediately without a form gate.
  */
 
-import { useState, useEffect, useRef } from "react";
 import { Link } from "wouter";
 import ClientPortalCTA from "@/components/ClientPortalCTA";
-
-const GHL_FORM_URL = "https://api.leadconnectorhq.com/widget/form/hoQGXKLh9Wh3XbgJYP7G";
 
 interface Resource {
   id: string;
@@ -67,146 +62,7 @@ const resources: Resource[] = [
   },
 ];
 
-interface GateModalProps {
-  resource: Resource;
-  onClose: () => void;
-}
-
-function GateModal({ resource, onClose }: GateModalProps) {
-  const [submitted, setSubmitted] = useState(false);
-  const iframeRef = useRef<HTMLIFrameElement>(null);
-
-  // Listen for GHL form submission message from the iframe
-  useEffect(() => {
-    function handleMessage(event: MessageEvent) {
-      // GHL fires a postMessage when the form is submitted successfully
-      if (
-        event.data &&
-        (event.data.type === "form-submitted" ||
-          event.data.event === "form_submitted" ||
-          (typeof event.data === "string" && event.data.includes("submitted")))
-      ) {
-        setSubmitted(true);
-      }
-    }
-    window.addEventListener("message", handleMessage);
-    return () => window.removeEventListener("message", handleMessage);
-  }, []);
-
-  function handleDownload() {
-    if (resource.fileUrl) {
-      // Force a file download to the device without navigating away
-      const link = document.createElement("a");
-      link.href = resource.fileUrl;
-      // Extract a clean filename from the URL
-      const filename = resource.fileUrl.split("/").pop() || "resource.pdf";
-      link.setAttribute("download", filename);
-      link.style.display = "none";
-      document.body.appendChild(link);
-      link.click();
-      document.body.removeChild(link);
-    }
-    // Keep modal open briefly so user sees the success state, then close
-    setTimeout(() => onClose(), 1500);
-  }
-
-  return (
-    <div
-      className="fixed inset-0 z-50 flex items-center justify-center px-4 py-6"
-      style={{ background: "rgba(15,23,42,0.80)", backdropFilter: "blur(6px)" }}
-      onClick={(e) => { if (e.target === e.currentTarget) onClose(); }}
-    >
-      <div className="bg-white rounded-3xl shadow-2xl w-full max-w-md overflow-hidden flex flex-col max-h-[90vh]">
-        {/* Modal Header */}
-        <div
-          className="px-8 py-5 text-white flex-shrink-0"
-          style={{ background: "linear-gradient(135deg, #0f172a, #1d4ed8)" }}
-        >
-          <div className="flex items-center justify-between mb-2">
-            <span className="text-3xl">{resource.icon}</span>
-            <button
-              onClick={onClose}
-              className="text-blue-300 hover:text-white transition-colors text-xl leading-none"
-            >
-              ✕
-            </button>
-          </div>
-          <h3
-            className="text-xl font-black text-white leading-tight"
-            style={{ fontFamily: "Montserrat, sans-serif" }}
-          >
-            {resource.title}
-          </h3>
-          <p className="text-blue-200 text-sm mt-1">
-            {submitted
-              ? "You're in! Your download is ready below."
-              : "Enter your info below to get instant free access."}
-          </p>
-        </div>
-
-        {/* Modal Body */}
-        <div className="flex-1 overflow-y-auto">
-          {!submitted ? (
-            <div className="px-4 py-4">
-              {/* GHL Embedded Form */}
-              <iframe
-                ref={iframeRef}
-                src={GHL_FORM_URL}
-                style={{ width: "100%", height: "680px", border: "none" }}
-                scrolling="yes"
-                id={`ghl-form-${resource.id}`}
-                title="Get Free Access"
-              />
-              {/* Manual fallback — if iframe detection doesn't fire */}
-              <div className="mt-3 text-center">
-                <button
-                  onClick={() => setSubmitted(true)}
-                  className="text-xs text-slate-400 underline hover:text-blue-600 transition-colors"
-                >
-                  Already submitted? Click here to get your download
-                </button>
-              </div>
-            </div>
-          ) : (
-            <div className="text-center px-8 py-8">
-              <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                <svg className="w-8 h-8 text-green-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
-                  <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
-                </svg>
-              </div>
-              <h4
-                className="text-xl font-black text-blue-950 mb-2"
-                style={{ fontFamily: "Montserrat, sans-serif" }}
-              >
-                You're all set!
-              </h4>
-              <p className="text-slate-500 text-sm mb-6">
-                Your file is ready — click below and it will download directly to your device.
-              </p>
-              <button
-                onClick={handleDownload}
-                className="w-full bg-blue-700 hover:bg-blue-800 text-white font-black text-base py-4 rounded-2xl transition-all duration-300 shadow-lg flex items-center justify-center gap-2"
-                style={{ fontFamily: "Montserrat, sans-serif" }}
-              >
-                <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
-                  <path strokeLinecap="round" strokeLinejoin="round" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
-                </svg>
-                Download PDF — Save to Device
-              </button>
-              <p className="text-slate-400 text-xs mt-3">
-                Downloads directly to your phone, tablet, or computer.
-              </p>
-            </div>
-          )}
-        </div>
-      </div>
-    </div>
-  );
-}
-
 export default function Resources() {
-  const [activeResource, setActiveResource] = useState<Resource | null>(null);
-
   return (
     <div
       className="min-h-screen bg-white"
@@ -250,7 +106,7 @@ export default function Resources() {
             Free Resources
           </h1>
           <p className="text-lg text-blue-100 max-w-xl mx-auto leading-relaxed">
-            Tools, guides, and references to help you take control of your credit — completely free. No catch.
+            Tools, guides, and references to help you take control of your credit — completely free. Download any guide instantly.
           </p>
         </div>
       </section>
@@ -260,47 +116,45 @@ export default function Resources() {
         <div className="max-w-5xl mx-auto">
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
             {resources.map((resource) => (
-              <div
+              <article
                 key={resource.id}
                 className="bg-white rounded-3xl border border-slate-100 shadow-sm hover:shadow-lg transition-all duration-300 overflow-hidden group"
               >
-                {/* Card Top */}
                 <div className="px-7 pt-7 pb-5">
                   <div className="flex items-start justify-between mb-4">
-                    <div className="text-4xl">{resource.icon}</div>
+                    <div className="text-4xl" aria-hidden="true">{resource.icon}</div>
                     <span className={`text-xs font-black px-3 py-1 rounded-full ${resource.categoryColor}`}>
                       {resource.category}
                     </span>
                   </div>
-                  <h3
+                  <h2
                     className="text-lg font-black text-blue-950 mb-2 leading-snug"
                     style={{ fontFamily: "Montserrat, sans-serif" }}
                   >
                     {resource.title}
-                  </h3>
+                  </h2>
                   <p className="text-slate-500 text-sm leading-relaxed">
                     {resource.description}
                   </p>
                 </div>
 
-                {/* Card Footer */}
                 <div className="px-7 pb-7">
-                  <button
-                    onClick={() => setActiveResource(resource)}
-                    className="w-full bg-blue-700 hover:bg-blue-800 text-white font-black text-sm py-3.5 rounded-2xl transition-all duration-300 flex items-center justify-center gap-2 group-hover:shadow-md"
+                  <a
+                    href={resource.fileUrl}
+                    download={`${resource.id}.pdf`}
+                    className="w-full bg-blue-700 hover:bg-blue-800 text-white font-black text-sm py-3.5 rounded-2xl transition-all duration-300 flex items-center justify-center gap-2 group-hover:shadow-md focus:outline-none focus:ring-4 focus:ring-blue-200"
                     style={{ fontFamily: "Montserrat, sans-serif" }}
                   >
-                    <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
+                    <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5} aria-hidden="true">
                       <path strokeLinecap="round" strokeLinejoin="round" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
                     </svg>
                     Download Free PDF
-                  </button>
+                  </a>
                 </div>
-              </div>
+              </article>
             ))}
           </div>
 
-          {/* Bottom note */}
           <p className="text-center text-slate-400 text-sm mt-10">
             More resources coming soon. Check back regularly.
           </p>
@@ -318,14 +172,6 @@ export default function Resources() {
           ← Back to Home
         </Link>
       </footer>
-
-      {/* ── Gate Modal ── */}
-      {activeResource && (
-        <GateModal
-          resource={activeResource}
-          onClose={() => setActiveResource(null)}
-        />
-      )}
     </div>
   );
 }

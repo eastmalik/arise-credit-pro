@@ -7,3 +7,9 @@
 - [x] Add a consistent Current Client portal section above the footer on each page.
 - [x] Use a placeholder portal destination until Emperor provides the final link.
 - [x] Verify all page layouts and save a checkpoint.
+- [x] Document the website entry points, GoHighLevel workflows, tags, and pipeline stages currently configured.
+- [x] Create and render a visual GoHighLevel automation mind map.
+- [x] Deliver the mind map with clear notes on manual versus automated handoffs.
+- [x] Remove the embedded GoHighLevel form gate from the Resources page.
+- [x] Make every resource card download its PDF directly with one click.
+- [x] Verify the direct-download flow and save a checkpoint.
