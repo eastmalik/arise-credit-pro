@@ -33,7 +33,20 @@ committed before the DNS switch:
 
 ## DNS (Hostinger)
 
-Only the `www` and `@` records point at the website. Write down their current
-(Manus) values before changing them — that is the rollback plan. Do **not**
-touch MX, hostingermail, mailgun, leadconnectorhq, autodiscover, autoconfig,
-DKIM, SPF or DMARC records — they run business email.
+Only these records point at the website. Hostinger offers no ALIAS record
+type for this domain, so the bare domain uses GitHub's four A records:
+
+| Type | Name | Value |
+| --- | --- | --- |
+| CNAME | www | eastmalik.github.io |
+| A | @ | 185.199.108.153 |
+| A | @ | 185.199.109.153 |
+| A | @ | 185.199.110.153 |
+| A | @ | 185.199.111.153 |
+
+Do **not** touch MX, hostingermail, mailgun, leadconnectorhq, autodiscover,
+autoconfig, DKIM, SPF or DMARC records — they run business email.
+
+Rollback to Manus (pre-migration values, recorded 2026-10-02): CNAME www →
+cname.manus.space, and a single A @ → 104.8.26.246 in place of the four
+GitHub A records.
