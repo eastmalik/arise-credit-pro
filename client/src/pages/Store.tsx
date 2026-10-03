@@ -17,10 +17,11 @@ const VIDEO_ID = "7FGtyAsvLH0";
 // enrollment page exists. The old Authorize.net link charged $120 upfront.
 const CONSULTATION_URL = "https://api.leadconnectorhq.com/widget/form/scRngtj3OIHcuu6Y01XY";
 
-// $27 do-it-yourself guide. Paste the checkout link here once it exists; until
-// then the button shows "Coming soon". Buyers get the PDF from the checkout's
-// delivery email, never from a link on this site.
-const GUIDE_CHECKOUT_URL = "";
+// $27 do-it-yourself guide: Authorize.net Simple Checkout item. If this is
+// emptied, the button falls back to "Coming soon". Buyers get the PDF by email
+// after purchase, never from a link on this site.
+const GUIDE_CHECKOUT_URL =
+  "https://Simplecheckout.authorize.net/payment/CatalogPayment.aspx?LinkId=61116708-2ba2-4d9c-82b9-d4e8d616f8c3";
 
 const guideContents = [
   "Your rights under credit reporting law, in plain English",
