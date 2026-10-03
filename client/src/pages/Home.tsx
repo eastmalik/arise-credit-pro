@@ -1,12 +1,12 @@
 /*
   ARISE CREDIT PRO — Home Page
   Design: Bold Financial Authority
-  Sections: Nav, Hero, Stats, About, Services, Testimonials, Booking CTA, FAQ, Footer
+  Sections: Nav, Hero, About, Services, Testimonials, Booking CTA, FAQ, Footer
   Colors: Deep Navy hero, Royal Blue CTAs, White/off-white content
   Typography: Montserrat headlines, Nunito Sans body
 */
 
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect } from "react";
 import {
   ChevronDown,
   ChevronUp,
@@ -29,6 +29,7 @@ import {
   Facebook,
 } from "lucide-react";
 import ClientPortalCTA from "@/components/ClientPortalCTA";
+import FamilyFooter, { EAST_CONSULTING_URL, FLOW_URL } from "@/components/FamilyFooter";
 
 const TYPEFORM_URL = "https://api.leadconnectorhq.com/widget/form/scRngtj3OIHcuu6Y01XY";
 
@@ -219,85 +220,6 @@ function Hero() {
   );
 }
 
-// ─── Stats Bar ────────────────────────────────────────────────────────────────
-function useCountUp(target: number, duration = 2000, start = false) {
-  const [count, setCount] = useState(0);
-  useEffect(() => {
-    if (!start) return;
-    let startTime: number | null = null;
-    const step = (timestamp: number) => {
-      if (!startTime) startTime = timestamp;
-      const progress = Math.min((timestamp - startTime) / duration, 1);
-      setCount(Math.floor(progress * target));
-      if (progress < 1) requestAnimationFrame(step);
-    };
-    requestAnimationFrame(step);
-  }, [target, duration, start]);
-  return count;
-}
-
-function StatCard({
-  value,
-  suffix,
-  label,
-  started,
-}: {
-  value: number;
-  suffix: string;
-  label: string;
-  started: boolean;
-}) {
-  const count = useCountUp(value, 2000, started);
-  return (
-    <div className="text-center px-6 py-4">
-      <div className="stat-number">
-        {count}
-        {suffix}
-      </div>
-      <div className="text-blue-200 text-sm font-medium mt-1 tracking-wide">
-        {label}
-      </div>
-    </div>
-  );
-}
-
-function StatsBar() {
-  const ref = useRef<HTMLDivElement>(null);
-  const [started, setStarted] = useState(false);
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => { if (entry.isIntersecting) setStarted(true); },
-      { threshold: 0.3 }
-    );
-    if (ref.current) observer.observe(ref.current);
-    return () => observer.disconnect();
-  }, []);
-
-  const stats = [
-    { value: 120, suffix: "pts", label: "Avg Score Increase" },
-    { value: 98, suffix: "%", label: "Client Satisfaction" },
-  ];
-
-  return (
-    <section
-      ref={ref}
-      className="py-12"
-      style={{
-        background: "linear-gradient(135deg, oklch(0.18 0.08 264), oklch(0.30 0.18 264))",
-      }}
-    >
-      <div className="container mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-2 divide-x divide-blue-700/40">
-          {stats.map((s) => (
-            <StatCard key={s.label} {...s} started={started} />
-          ))}
-        </div>
-      </div>
-    </section>
-  );
-}
-
 // ─── Does This Sound Like You ───────────────────────────────────────────────────
 const painPoints = [
   {
@@ -389,27 +311,29 @@ function PainPoints() {
   );
 }
 
-/// ─── Transformation Journey ─────────────────────────────────────────────────────
+/// ─── Level 1 Journey ────────────────────────────────────────────────────────────
+// Arise Credit Pro is Level 1 (The Credit Shield) of the 7Band map. Levels 2–3
+// belong to East Consulting LLC; Arise hands off rather than bundling them.
 const journeySteps = [
   {
     number: "01",
     title: "Free Consultation",
-    desc: "We start with a no-cost strategy session to review your credit situation and map out your personalized plan.",
+    desc: "We start with a no-cost strategy session to review your credit reports and see whether the Restoration Program fits.",
   },
   {
     number: "02",
-    title: "Credit Repair",
-    desc: "We dispute negative items, errors, and inaccuracies across all three bureaus to clean up your credit profile.",
+    title: "Enroll",
+    desc: "Sign your service agreement and set up IdentityIQ, the credit monitoring we work from.",
   },
   {
     number: "03",
-    title: "Funding Success",
-    desc: "Once your profile is strong, we connect you with lenders and funding opportunities matched to your goals.",
+    title: "Dispute Work",
+    desc: "Month by month, we challenge errors and inaccurate items with all three bureaus and keep you updated in your client portal.",
   },
   {
     number: "04",
-    title: "Wealth Building",
-    desc: "You don't stop at a score. We guide you from credit repair → business setup → asset building → a legacy for your family.",
+    title: "Next: Levels 2–3",
+    desc: "When your credit is in order, East Consulting LLC helps you set up your business the right way and get it capital-ready.",
   },
 ];
 
@@ -423,10 +347,10 @@ function TransformationJourney() {
             className="text-4xl lg:text-5xl font-black text-blue-950 mb-3"
             style={{ fontFamily: "Montserrat, sans-serif" }}
           >
-            Your Transformation Journey
+            Level 1: The Credit Shield
           </h2>
-          <p className="text-slate-500 text-lg">
-            Four simple steps to credit repair and funding access.
+          <p className="text-slate-500 text-lg max-w-2xl mx-auto">
+            Arise Credit Pro is the first level of the 7Band map. Here is how it works, and where it leads.
           </p>
         </div>
 
@@ -466,6 +390,26 @@ function TransformationJourney() {
           </div>
         </div>
 
+        <div className="mt-14 flex flex-col sm:flex-row items-center justify-center gap-4 text-center">
+          <a
+            href={EAST_CONSULTING_URL}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-2 bg-blue-600 text-white font-black px-7 py-3.5 rounded-full text-sm hover:bg-blue-700 transition-colors shadow-lg"
+            style={{ fontFamily: "Montserrat, sans-serif" }}
+          >
+            Next step: East Consulting LLC <ArrowRight size={16} />
+          </a>
+          <a
+            href={FLOW_URL}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-2 border-2 border-blue-600 text-blue-700 font-black px-7 py-3 rounded-full text-sm hover:bg-blue-50 transition-colors"
+            style={{ fontFamily: "Montserrat, sans-serif" }}
+          >
+            Credit already strong? Join THE FLOW
+          </a>
+        </div>
       </div>
     </section>
   );
@@ -558,7 +502,7 @@ function Footer() {
               </div>
             </div>
             <p className="text-blue-200/80 text-sm leading-relaxed max-w-xs mb-6">
-              Helping individuals build powerful credit profiles and unlock funding.
+              Done-for-you credit restoration. Level 1 of the 7Band map.
             </p>
 
           </div>
@@ -647,12 +591,12 @@ export default function Home() {
     <div className="min-h-screen">
       <Navbar />
       <Hero />
-      <StatsBar />
       <PainPoints />
       <TransformationJourney />
       <BookingCTA />
       <ClientPortalCTA />
       <Footer />
+      <FamilyFooter />
     </div>
   );
 }
