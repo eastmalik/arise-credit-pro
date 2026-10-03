@@ -461,6 +461,12 @@ function BookingCTA() {
             Learn More
           </a>
         </div>
+        <p className="mt-8 text-slate-600">
+          Prefer to do it yourself?{" "}
+          <a href="/store#guide" className="font-bold text-blue-700 hover:underline">
+            See the $27 Fix Your File guide
+          </a>
+        </p>
       </div>
     </section>
   );
