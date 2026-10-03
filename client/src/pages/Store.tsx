@@ -6,6 +6,7 @@
  * packages were retired per the Sales Tree Coherence Audit.
  */
 
+import { useEffect } from "react";
 import { Link } from "wouter";
 import ClientPortalCTA from "@/components/ClientPortalCTA";
 import FamilyFooter, { FLOW_URL } from "@/components/FamilyFooter";
@@ -15,6 +16,20 @@ const VIDEO_ID = "7FGtyAsvLH0";
 // Enrollment starts with the free consultation until the bill-after-the-work
 // enrollment page exists. The old Authorize.net link charged $120 upfront.
 const CONSULTATION_URL = "https://api.leadconnectorhq.com/widget/form/scRngtj3OIHcuu6Y01XY";
+
+// $27 do-it-yourself guide. Paste the checkout link here once it exists; until
+// then the button shows "Coming soon". Buyers get the PDF from the checkout's
+// delivery email, never from a link on this site.
+const GUIDE_CHECKOUT_URL = "";
+
+const guideContents = [
+  "Your rights under credit reporting law, in plain English",
+  "How to get all three reports free, every week",
+  "A line-by-line report audit and the 20 errors worth finding",
+  "8 fill-in-the-blank dispute letters for every common situation",
+  "What to do when an error stays, step by step",
+  "A 90-day plan, dispute tracker and scam warning signs",
+];
 
 const program = {
   title: "The Restoration Program",
@@ -33,6 +48,14 @@ const program = {
 };
 
 export default function Store() {
+  // Links like /store#guide land at the top because the page renders after
+  // the browser looks for the anchor, so scroll to it once mounted.
+  useEffect(() => {
+    if (window.location.hash) {
+      document.getElementById(window.location.hash.slice(1))?.scrollIntoView();
+    }
+  }, []);
+
   return (
     <div
       className="min-h-screen bg-white"
@@ -200,6 +223,64 @@ export default function Store() {
               <p className="mt-3 text-center text-xs text-slate-500">
                 Enrollment starts with a free consultation. Nothing is charged when you book.
               </p>
+            </div>
+          </div>
+
+          {/* Do-it-yourself guide */}
+          <div
+            id="guide"
+            className="mt-12 mx-auto max-w-3xl rounded-2xl border border-blue-100 bg-slate-50 p-6 sm:p-8 scroll-mt-24"
+          >
+            <div className="flex flex-col sm:flex-row sm:items-start gap-6">
+              <div className="sm:w-1/3 text-center sm:text-left">
+                <div className="inline-block bg-blue-100 text-blue-700 text-xs font-black tracking-widest uppercase px-3 py-1 rounded-full mb-3">
+                  Prefer to do it yourself?
+                </div>
+                <h3
+                  className="text-2xl font-black text-blue-950 mb-1"
+                  style={{ fontFamily: "Montserrat, sans-serif" }}
+                >
+                  Fix Your File
+                </h3>
+                <p className="text-slate-500 text-sm mb-3">The do-it-yourself credit report guide (26 pages)</p>
+                <div className="flex items-end justify-center sm:justify-start gap-1">
+                  <span className="text-4xl font-black text-blue-950" style={{ fontFamily: "Montserrat, sans-serif" }}>
+                    $27
+                  </span>
+                  <span className="text-sm font-bold text-slate-400 mb-1">one time</span>
+                </div>
+              </div>
+              <div className="sm:w-2/3">
+                <ul className="space-y-2 mb-5">
+                  {guideContents.map((item) => (
+                    <li key={item} className="flex items-start gap-2 text-sm text-slate-700">
+                      <span className="mt-1.5 h-1.5 w-1.5 rounded-full bg-blue-600 flex-shrink-0" />
+                      {item}
+                    </li>
+                  ))}
+                </ul>
+                {GUIDE_CHECKOUT_URL ? (
+                  <a
+                    href={GUIDE_CHECKOUT_URL}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="block w-full text-center font-black text-sm py-3.5 rounded-xl bg-blue-700 text-white hover:bg-blue-800 transition-colors shadow-md"
+                    style={{ fontFamily: "Montserrat, sans-serif" }}
+                  >
+                    Get the Guide — $27
+                  </a>
+                ) : (
+                  <span
+                    className="block w-full text-center font-black text-sm py-3.5 rounded-xl bg-slate-200 text-slate-500"
+                    style={{ fontFamily: "Montserrat, sans-serif" }}
+                  >
+                    Coming soon
+                  </span>
+                )}
+                <p className="mt-3 text-xs text-slate-500">
+                  An educational guide, not legal advice. No score or result is promised. You can dispute errors on your credit reports yourself, for free; this guide shows you how.
+                </p>
+              </div>
             </div>
           </div>
 
