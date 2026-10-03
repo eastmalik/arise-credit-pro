@@ -9,6 +9,7 @@
 import { useState } from "react";
 import { Link } from "wouter";
 import ClientPortalCTA from "@/components/ClientPortalCTA";
+import FamilyFooter from "@/components/FamilyFooter";
 
 interface Resource {
   id: string;
@@ -208,6 +209,7 @@ export default function Resources() {
           ← Back to Home
         </Link>
       </footer>
+      <FamilyFooter />
     </div>
   );
 }
