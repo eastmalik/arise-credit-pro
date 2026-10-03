@@ -7,6 +7,19 @@ Target live site: https://www.arisecreditpro.com (GitHub Pages, deployed from
 
 - The owner is not a developer: explain things in plain language, no jargon.
 
+## How the business runs (owner's system)
+
+- Site path: Pricing → "Book Your Free Consultation" ($120 Restoration
+  Program) → GoHighLevel form → GoHighLevel calendar → automated pipeline.
+  Keep this path; the site doesn't take payment.
+- Contract signing and billing happen after the call, outside the site:
+  billing runs through Authorize.net (invoice and/or recurring subscription).
+- The owner chose not to state billing timing ("billed at month end",
+  "nothing charged at signup") on the site. Don't add it.
+- Arise is Level 1 of the 7Band map; Levels 2–3 go to East Consulting LLC.
+  There is a higher-level system behind all the sites; ask the owner before
+  restructuring funnels.
+
 ## Before merging any change
 
 - `pnpm check` and `pnpm build` must pass.
