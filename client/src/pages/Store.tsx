@@ -12,17 +12,17 @@ import FamilyFooter, { FLOW_URL } from "@/components/FamilyFooter";
 
 const VIDEO_ID = "7FGtyAsvLH0";
 
-// Checkout is unchanged for now; see the enrollment/billing plan before editing.
-const MONTHLY_URL =
-  "https://Simplecheckout.authorize.net/payment/CatalogPayment.aspx?LinkId=51031108-39b4-4d74-b05c-5c4402f8e523";
+// Enrollment starts with the free consultation until the bill-after-the-work
+// enrollment page exists. The old Authorize.net link charged $120 upfront.
+const CONSULTATION_URL = "https://api.leadconnectorhq.com/widget/form/scRngtj3OIHcuu6Y01XY";
 
 const program = {
   title: "The Restoration Program",
   price: "$120",
   period: "/mo",
   description: "Done-for-you credit restoration, month to month. Cancel anytime.",
-  url: MONTHLY_URL,
-  cta: "Get Started — $120/mo",
+  url: CONSULTATION_URL,
+  cta: "Book Your Free Consultation",
   features: [
     "Credit Restoration Services (Done For You)",
     "Up to 30 Dispute Items — All 3 Bureaus",
@@ -197,6 +197,9 @@ export default function Store() {
               >
                 {program.cta}
               </a>
+              <p className="mt-3 text-center text-xs text-slate-500">
+                Enrollment starts with a free consultation. Nothing is charged when you book.
+              </p>
             </div>
           </div>
 
@@ -211,7 +214,7 @@ export default function Store() {
           {/* Bottom trust line */}
           <div className="mt-10 text-center">
             <p className="text-slate-400 text-sm">
-              🔒 All payments processed securely through Authorize.net &nbsp;·&nbsp; Questions?{" "}
+              Questions?{" "}
               <a href="/#booking" className="text-blue-600 font-bold hover:underline">Book a free call</a>
             </p>
           </div>
