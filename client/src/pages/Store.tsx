@@ -195,7 +195,7 @@ export default function Store() {
               </ul>
             </div>
 
-            {/* Required third-party cost, disclosed before payment */}
+            {/* Required third-party cost */}
             <div className="mx-6 mb-6 rounded-xl border border-amber-200 bg-amber-50 p-4 text-sm leading-relaxed text-slate-700">
               <p className="font-black text-slate-900 mb-1" style={{ fontFamily: "Montserrat, sans-serif" }}>
                 Also required: IdentityIQ — 7-day trial for $1, then $32.86/mo
@@ -205,9 +205,6 @@ export default function Store() {
               </p>
               <p className="mt-2">
                 Your total monthly cost after the trial: <strong>$152.86</strong> ($120 to Arise Credit Pro + $32.86 to IdentityIQ).
-              </p>
-              <p className="mt-2 text-xs text-slate-500">
-                Disclosure: Arise Credit Pro earns a commission when you sign up for IdentityIQ through us.
               </p>
             </div>
 
